@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EyeControl.Ball">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AABAAIgAAAAAAAAAABAAAAAAAAAAAAAAAABgAAAIQAM=</HashCode>
+      <FileName>Ball.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EyeControl.Eye">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAJAOACBCAAgAgAAIAAIABAAiAACAhAABIIAAAMAAA=</HashCode>
+      <FileName>Eye.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EyeControl.Sphere">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAACIgAA=</HashCode>
+      <FileName>Sphere.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

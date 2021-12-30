@@ -1,0 +1,99 @@
+﻿<Window x:Class="DMSGalaxy.Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"    
+        xmlns:EyeControl ="clr-namespace:DMSGalaxy.EyeControl;assembly=DMSGalaxy.EyeControl" 
+        Title="DMSGalaxy" Height="1080" Width="1920"  Closing="wd_main_Closing"  Loaded="wd_main_Loaded"  Icon="Bokehlicia-Captiva-Atom.ico"
+        WindowStyle="SingleBorderWindow" ResizeMode="CanResize"  KeyDown="wnd_KeyDown">
+    <Grid x:Name="grid_main"  Background="#1E1E1E" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <!--<Label  x:Name="_LbLogOut" Content="LogOut" Height="50" Width="100" FontSize="12" Background="{x:Null}"  Grid.Column="1" Grid.Row="0"
+                            VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  MouseDown="_LbLogOut_MouseDown">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=_LbLogOut,Path=IsMouseOver}" Value="True">
+                            <Setter Property="Foreground" Value="Aqua"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>-->
+        <Grid  Grid.Column="1" Grid.Row="0" Width="500" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Label  x:Name="_tbUserName" FontSize="12"  Grid.Column="0" Foreground="White"  Padding="0,0,10,0"  HorizontalContentAlignment="Right" VerticalContentAlignment="Center" />
+
+            <Border x:Name="VersionBorder" BorderThickness="3" Height="30" Width="30" Grid.Column="1" MouseDown="VersionInfos_MouseDown"
+                               CornerRadius="100,100,100,100"  ToolTip="버전확인" Background="Black">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True" >
+                                <Setter   Property="BorderBrush" Value="White"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <TextBlock Text="!" VerticalAlignment="Center" HorizontalAlignment="Center"  Background="{x:Null}" 
+                                      FontSize="15" FontWeight="Bold">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="Gray"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=VersionBorder, Path=IsMouseOver}" Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+            </Border>
+        </Grid>
+
+        <Grid x:Name="grid_Eye" Grid.Column="1" Grid.Row="0" Width="50" Height="50" HorizontalAlignment="Left" MouseDown="grid_Eye_MouseDown"  Visibility="Collapsed"
+                        ToolTip="안녕하세요. 당신의 마우스 위치를 알려 드릴께요. 절 클릭하시면 동공 크기 조절도 가능합니다.">
+                        
+            <EyeControl:Eye  x:Name="Eye"
+
+							 PupilSize="{Binding ElementName=sliPupil, Path=Value}"
+							 IrisSize="{Binding ElementName=sliIris, Path=Value}"/>
+							 <!--IrisInnerColor="#211111" 
+							 IrisMiddleColor="#411111"
+							 IrisOuterColor="Brown"
+							 IrisRimColor="Black" />-->
+        </Grid>
+        
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Image Grid.Column="0" Height="32" Width="32" Source="/DMSGalaxy.Main;component/Images/FrmHome_HomeBtn.png"  Grid.Row="0" MouseDown="Image_MouseDown" />
+            <WrapPanel x:Name="Wrap_menu"  Grid.Row="1" Margin="5,10,5,10"  />
+            <Grid Grid.Row="2" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--<Image Grid.Column="0" Width="50" Height="35" Source="/DMSGalaxy.Main;component/Images/naver.png"  MouseDown="Naver_MouseDown"/>
+                <Image Grid.Column="1" Width="30" Height="10"  Source="/DMSGalaxy.Main;component/Images/daum.png" MouseDown="Daum_MouseDown" />-->
+            </Grid>
+        </Grid>
+        <Frame x:Name="Frame_Home" Grid.Row="1"  Grid.Column="1" NavigationUIVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" Panel.ZIndex="0" />
+    </Grid>
+</Window>

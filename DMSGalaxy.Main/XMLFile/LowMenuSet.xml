@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Setting>
+
+  <Dashboards TileTop="Overview" TileBottom="MC Run Status"  Page="1_01"/>
+  <Dashboards TileTop="대시보드" TileBottom="Manufacturing View"  Page="1_02"/>
+
+  <Report TileTop="생산현황" TileBottom="MC Production Summary"  Page="2_01"/>
+  <Report TileTop="레포트" TileBottom="Data Reports"  Page="2_02"/>
+  <!--<Report1 TileTop="자재" TileBottom="Roll Counts Monitor"  Page="2_03"/>
+  <Report1 TileTop="주간현황" TileBottom="Week Board"  Page="2_04"/>
+  <Report1 TileTop="월간현황" TileBottom="Month Board"  Page="2_05"/>
+  <Report1 TileTop="월간보고" TileBottom="Month Tracking Reports"  Page="2_06"/>-->
+
+  <Mill TileTop="통합현황" TileBottom="All M/C Overivew"  Page="3_01"/>
+
+  <Analysis TileTop="분석" TileBottom="Analysis"  Page="4_01"/>
+
+  <Historian TileTop="GRS" TileBottom="GRS Historian"  Page="5_01"/>
+
+  <Communication TileTop="소통" TileBottom="News / Communication"  Page="6_01"/>
+
+  <AppSetting TileTop="바탕화면" TileBottom="Background Setting"  Page="7_01"/>
+
+  <DataSetting TileTop="관리" TileBottom="User Save"  Page="8_01"/>
+  <DataSetting TileTop="수정/삭제" TileBottom="User Modify"  Page="8_02"/>
+
+  <OverviewCol
+    MC1="#CDCCCC"  
+    MC2="#CDCCCC" 
+    MC3="#CDCCCC" 
+    MC4="#FFCD07" 
+    MC5="#FFCD07" 
+    MC6="#2CB457" 
+    MC7="#2CB457" 
+    MC8="#2CB457" 
+    MC9="#41B7EA"  
+    MC10="#41B7EA"    
+    />
+
+  <OverviewAddMainRow
+    MC1="1_1"
+    MC2=""
+    MC3="1_3"
+    MC4="1_5"
+    MC5="1_7"
+    MC6="3_1"
+    MC7=""
+    MC8="3_3"
+    MC9="3_5"
+    MC10="3_7"
+    />
+
+  <OverviewAddMainText
+  ROW0="Ultra"
+  ROW1="Liner"
+  ROW2="Slim"
+  ROW3="Senior"
+    />
+
+  <OverviewAddMainTextRow
+    ROW0="0_1"
+    ROW1="0_5"
+    ROW2="2_1"
+    ROW3="2_5"
+    />
+
+</Setting>

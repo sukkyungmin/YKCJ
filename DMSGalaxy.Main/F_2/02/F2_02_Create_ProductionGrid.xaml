@@ -1,0 +1,469 @@
+﻿<Page 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"      
+      xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+      xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+      x:Class="DMSGalaxy.Main.F_2._02.F2_02_Create_ProductionGrid"
+      mc:Ignorable="d" 
+      d:DesignHeight="760" d:DesignWidth="1150"  MouseDown="Page_MouseDown"
+ 	  Title="F2_02" Width="auto" Height="auto" Background="White">
+    <Page.Resources>
+
+        <!-- Cell Colum -->
+        <DataTemplate  x:Key="CellColumBlock">
+            <TextBlock  VerticalAlignment="Center" FontFamily="Arial"  FontSize="14">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Padding" Value="0,0,20,0"/>
+                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property ="Text" Value="{Binding Path=Value, StringFormat={}{0:#,##0;0;-}}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Column.FieldName}" Value="CODE">
+                                <Setter Property="Foreground" Value="#FF8D8C8C"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Column.FieldName}" Value="NAME">
+                                <Setter Property="Foreground" Value="#C4C4C4"/>
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="Padding" Value="10,0,0,0"/>
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Column.FieldName}" Value="TIME">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="0"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Column.FieldName}" Value="WASTE%">
+                                <Setter Property ="Text" Value="{Binding Path=Value, StringFormat={}{0:0.0;}}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Column.FieldName}" Value="WASTEBOX%">
+                                <Setter Property ="Text" Value="{Binding Path=Value, StringFormat={}{0:0.0;}}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Column.FieldName}" Value="DELAY%">
+                                <Setter Property ="Text" Value="{Binding Path=Value, StringFormat={}{0:0.0;}}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Column.FieldName}" Value="PRODUCTIVITY">
+                                <Setter Property ="Text" Value="{Binding Path=Value, StringFormat={}{0:0.0;}}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Column.FieldName}" Value="OEE2">
+                                <Setter Property ="Text" Value="{Binding Path=Value, StringFormat={}{0:0.0;}}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CellColumImage">
+            <Image Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Value}" Value="1AM">
+                                <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_TYPE_4.png"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Value}" Value="1PM">
+                                <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_TYPE_2.png"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Value}" Value="2CH">
+                                <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_TYPE_3.png"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Value}" Value="3CH">
+                                <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_TYPE_1.png"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </DataTemplate>
+
+        <DataTemplate x:Key="Columnheader">
+            <StackPanel Orientation="Horizontal">
+                <Image   Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding}" Value="CODE">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_CODE.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="NAME">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_NAME.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="TIME">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_TIME.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="TYPE">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_TYPE.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="TOTAL">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_TOTAL.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="WASTE">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_WASTE.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="BOX">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_BOX.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="RUNTIME">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_RunTime.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="DOWNTIME">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_DownTime.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="STOPCOUNT">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_DownCount.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="WASTE%">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_WASTE.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="WASTEBOX%">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_WASTE.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="DELAY%">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_TIME.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="PRODUCTIVITY">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_Productivity.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding}" Value="OEE2">
+                                    <Setter   Property="Source" Value="/DMSGalaxy.Main;component/Images/R_OEE.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Foreground="#938F8F" FontWeight="Bold" Margin="10,0,0,0">
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="Nont">
+            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0" FontSize="20" Foreground="Red" Grid.Column="1"/>
+        </DataTemplate>
+
+        <!--<Style x:Key="GroupBolumnSummaryColorButtom" TargetType="{x:Type dxg:he}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type dxg:HeaderFillControl}">
+                        <Border Background="{TemplateBinding Background}" 
+                             BorderBrush="Red" 
+                             BorderThickness="0,0,0,10" 
+                             Padding="{TemplateBinding Padding}"
+                             Width="{Binding Column.ActualHeaderWidth}">
+                            <ContentPresenter x:Name="PART_Content" 
+                                           Content="{Binding}" 
+                                           ContentTemplate="{Binding View.GroupColumnSummaryItemTemplate}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+
+        <Style TargetType="{x:Type dxg:BackgroundBorderControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border BorderThickness="0,0,0,0" BorderBrush="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush, ThemeName=MetropolisLight}}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="dxg:ColumnBase.HeaderPresenterType" Value="Headers" />
+        </Style>
+
+
+        <Style x:Key="GroupColumnSummaryControl" TargetType="{x:Type dxg:GroupColumnSummaryControl}">
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Padding" Value="{DynamicResource {dxgt:GroupRowThemeKey ResourceKey=GroupColumnSummaryPadding}}" />
+            <Setter Property="NormalBorderBrush" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" />
+            <Setter Property="FocusedBorderBrush" Value="{DynamicResource {dxgt:GroupRowThemeKey ResourceKey=GroupColumnSummaryFocusedBorderBrush}}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type dxg:GroupColumnSummaryControl}">
+                        <Border Background="{TemplateBinding Background}" 
+                             BorderBrush="Transparent" 
+                             BorderThickness="0" 
+                             Padding="{TemplateBinding Padding}"
+                             Width="{Binding Column.ActualHeaderWidth}">
+                            <ContentPresenter x:Name="PART_Content" 
+                                           Content="{Binding}" 
+                                           ContentTemplate="{Binding View.GroupColumnSummaryItemTemplate}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <DataTemplate x:Key="GroupSummaryTextBlock">
+            <TextBlock Text="{Binding Value}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,0,10,0" FontWeight="Bold" >
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Foreground" Value="#FF8D8C8C"/>
+                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <!--<Style.Triggers>
+                            <DataTrigger Binding="{Binding Column.FieldName}" Value="TOTAL">
+                                <Setter Property="Foreground" Value="Blue"/>
+                                <Setter Property="FontSize" Value="30"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Column.FieldName}" Value="WASTE">
+                                <Setter Property="Foreground" Value="GreenYellow"/>
+                                <Setter Property="FontSize" Value="40"/>
+                            </DataTrigger>
+                        </Style.Triggers>-->
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </DataTemplate>
+
+        <!-- Group Index Colum -->
+        <DataTemplate x:Key="GroupSummaryTextBlock1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="DAYS"  HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0,3,10,0" FontSize="14" FontWeight="Bold" Foreground="#FF8D8C8C" Grid.Column="0"/>
+                <TextBlock Text="{Binding Value}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="0" FontSize="18" FontWeight="Bold" Foreground="#626262" Grid.Column="1"/>
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="SummaryStyle" TargetType="Run">
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{DXBinding '(int)Value le 40'}" Value="True">
+                    <Setter Property="Foreground" Value="Red"/>
+                </DataTrigger>
+                <DataTrigger Binding="{DXBinding '(int)Value gt 40 and (int)Value lt 70'}" Value="True">
+                    <Setter Property="Foreground" Value="Orange"/>
+                </DataTrigger>
+                <DataTrigger Binding="{DXBinding '(int)Value ge 70'}" Value="True">
+                    <Setter Property="Foreground" Value="Green"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ComboAllCheck" TargetType="{x:Type  CheckBox}">
+            <Setter Property="IsChecked" Value="False"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=Cb_ColumnsAllCheck, Path=IsChecked}" Value="True">
+                    <Setter Property="IsChecked" Value="True"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=Cb_ColumnsAllCheck, Path=IsChecked}" Value="False">
+                    <Setter Property="IsChecked" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3"/>
+            <RowDefinition />
+            <RowDefinition Height="3"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="1"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid Grid.Row="1" Background="Gray" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition />
+                <RowDefinition Height="1"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="1"/>
+            </Grid.ColumnDefinitions>
+            <!--<TextBlock x:Name="SizeGet" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Panel.ZIndex="2" Grid.Row="1" Grid.Column="1" Text="{Binding F2_dataTable.Rows[0][TOTAL]}"/>
+            <TextBlock x:Name="SizeGet1" VerticalAlignment="Center" HorizontalAlignment="Left"  FontSize="20" Panel.ZIndex="2" Grid.Row="1" Grid.Column="1" Text="{Binding F2_dataTable3.Rows[0][TOTAL]}"/>-->
+
+            <dxg:GridControl 
+                x:Name="maingrid" 
+                AutoGenerateColumns="AddNew" 
+                SelectionMode="Row" 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch" 
+                dx:ThemeManager.ThemeName="Office2016White" 
+                ShowBorder="False" 
+                ItemsSource="{Binding F2_dataTable}" 
+                ShowLoadingPanel="{Binding Show}" 
+                ItemsSourceChanged="maingrid_ItemsSourceChanged">
+
+                <dxg:GridControl.View>
+                    <dxg:TableView 
+                                                    RowMinHeight="50" AllowPerPixelScrolling="True" ShowTotalSummary="True"  GroupColumnSummaryContentStyle="{StaticResource ResourceKey= GroupColumnSummaryControl}"
+                                                     AutoWidth="True" NavigationStyle="None"   GroupSummaryDisplayMode="AlignByColumns"  GroupColumnSummaryItemTemplate="{StaticResource GroupSummaryTextBlock}"                                                  
+                                                    AllowGrouping="True" ShowGroupPanel="False" HeaderPanelMinHeight="50"  AllowResizing="False" AllowColumnFiltering="False" 
+                                                    Background="{x:Null}" AllowEditing="False" AllowColumnMoving="False" AllowBestFit="True" AllowSorting="False" 
+                                                    
+                                                    GroupValueTemplate="{StaticResource GroupSummaryTextBlock1}" >
+                        <!--<dxg:TableView.CellStyle>
+                            <Style BasedOn="{StaticResource {dxgt:GridRowThemeKey ResourceKey=LightweightCellStyle}}" TargetType="{x:Type dxg:LightweightCellEditor}">
+                                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                            </Style>
+                        </dxg:TableView.CellStyle>-->
+                        <!--<dxg:TableView.FormatConditions>
+                            <dxg:FormatCondition Expression=""{Binding Path=SHIFT }" "
+                        </dxg:TableView.FormatConditions>-->
+
+                        <!--GroupColumnSummaryElementStyle="{StaticResource SummaryStyle}"-->
+
+                        <!--그룹 서머리 관련 텍스트 정렬 활용-->
+                        <!--<dxg:TableView.GroupSummaryContentStyle>
+                            <Style xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" TargetType="dx:DataContentPresenter" BasedOn="{StaticResource {dxgt:TotalSummaryThemeKey ResourceKey=TotalSummaryContentStyle}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Column.FieldName}" Value="TOTAL">
+                                        <Setter Property="HorizontalAlignment" Value="Left" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dxg:TableView.GroupSummaryContentStyle>-->
+
+                    </dxg:TableView>
+
+                </dxg:GridControl.View>
+                <dxg:GridControl.Columns>
+
+                    <dxg:GridColumn Header="DAYS" FieldName="DAYS"   Visible="False"   GroupIndex="0">
+                        <!--<dxg:GridColumn.Style>
+                            <Style TargetType="{x:Type dxg:GridColumn}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=Cb_RUNNINGTIME, Path=IsChecked}" Value="True">
+                                        <Setter Property="GroupIndex" Value="0"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dxg:GridColumn.Style>-->
+                    </dxg:GridColumn>
+
+                    <dxg:GridColumn Header="CODE" FieldName="CODE" Width="110" FixedWidth="True" HorizontalHeaderContentAlignment="Center"  
+                                                              HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}"  IsEnabled="False" />
+                    <dxg:GridColumn Header="NAME" FieldName="NAME" Width="350" FixedWidth="True" HorizontalHeaderContentAlignment="Center" 
+                                                             HeaderTemplate="{StaticResource Columnheader}"  CellTemplate="{StaticResource CellColumBlock}" >
+                        <!--<dxg:GridColumn.HeaderStyle>
+                            <Style TargetType="dxg:BaseGridColumnHeader">
+                                <Setter Property="Background" Value="Red"/>
+                                -->
+                        <!--<Setter Property="FontFamily" Value="Arial"/>-->
+                        <!--
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+                            </Style>
+                        </dxg:GridColumn.HeaderStyle>-->
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="TIME" FieldName="TIME" Width="120" FixedWidth="True" HorizontalHeaderContentAlignment="Center" 
+                                                             HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}" />
+                    <dxg:GridColumn Header="TYPE" FieldName="TYPE"  FixedWidth="True" Width="80" HorizontalHeaderContentAlignment="Center" 
+                                                             HeaderTemplate="{StaticResource Columnheader}"  CellTemplate="{StaticResource CellColumImage }" />
+                    <dxg:GridColumn Header="TOTAL" FieldName="TOTAL" Width="140" FixedWidth="True"  HorizontalHeaderContentAlignment="Center" 
+                                                              HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}" />
+                    <dxg:GridColumn Header="WASTE" FieldName="WASTE" Width="140" FixedWidth="True" HorizontalHeaderContentAlignment="Center"
+                                                              HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}" />
+                    <dxg:GridColumn Header="BOX" FieldName="BOX"  HorizontalHeaderContentAlignment="Center" Width="140" FixedWidth="True"
+                                                              HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}"/>
+                        <!--<dxg:GridColumn.Style>
+                            <Style TargetType="{x:Type dxg:GridColumn}">
+                                <Setter Property="Width" Value="auto"/>
+                                <Setter Property="FixedWidth" Value="False"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=Cb_RUNNINGTIME, Path=IsChecked}" Value="True">
+                                        <Setter Property="Width" Value="140"/>
+                                        <Setter Property="FixedWidth" Value="True"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dxg:GridColumn.Style>
+                    </dxg:GridColumn>-->
+
+                    <dxg:GridColumn Header="WASTE%" FieldName="WASTE%" Width="140" FixedWidth="True" HorizontalHeaderContentAlignment="Center" 
+                                                            HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}" />
+                    <dxg:GridColumn Header="WASTEBOX%" FieldName="WASTEBOX%" Width="140" FixedWidth="True" HorizontalHeaderContentAlignment="Center"
+                                                              HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}" />
+                    <dxg:GridColumn Header="DELAY%" FieldName="DELAY%" Width="140" FixedWidth="True" HorizontalHeaderContentAlignment="Center" 
+                                                              HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}" />
+                    <dxg:GridColumn Header="PRODUCTIVITY" FieldName="PRODUCTIVITY" Width="160" FixedWidth="True" HorizontalHeaderContentAlignment="Center" 
+                                                              HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}" />
+                    <dxg:GridColumn Header="OEE2" FieldName="OEE2" Width="140" FixedWidth="True" HorizontalHeaderContentAlignment="Center" 
+                                                             HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}"/>
+                    <dxg:GridColumn Header="RUNTIME" FieldName="RUNNINGTIME" Width="140" FixedWidth="True" HorizontalHeaderContentAlignment="Center"
+                                                               HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}" />
+                    <dxg:GridColumn Header="DOWNTIME" FieldName="DOWNTIME" Width="140" FixedWidth="True" HorizontalHeaderContentAlignment="Center" 
+                                                              HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}" />
+                    <dxg:GridColumn Header="STOPCOUNT" FieldName="STOPCOUNT" Width="140" FixedWidth="True" HorizontalHeaderContentAlignment="Center" 
+                                                             HeaderTemplate="{StaticResource Columnheader}" CellTemplate="{StaticResource CellColumBlock}" />
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.GroupSummary>
+                    <dxg:GridSummaryItem FieldName="TOTAL" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn="" />
+                    <dxg:GridSummaryItem FieldName="WASTE" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="BOX" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="RUNNINGTIME" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="DOWNTIME" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="STOPCOUNT" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="WASTE%" SummaryType="Average" DisplayFormat=" 0.0;(0.0);0" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="WASTEBOX%" SummaryType="Average" DisplayFormat=" 0.0;(0.0);0" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="DELAY%" SummaryType="Average" DisplayFormat=" 0.0;(0.0);0" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="PRODUCTIVITY" SummaryType="Average" DisplayFormat=" 0.0;(0.0);0" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="OEE2" SummaryType="Average" DisplayFormat=" 0.0;(0.0);0"  ShowInColumn=""/>
+                </dxg:GridControl.GroupSummary>
+                <dxg:GridControl.TotalSummary>
+                    <dxg:GridSummaryItem  FieldName="TOTAL" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn=""/>
+                    <dxg:GridSummaryItem  FieldName="WASTE" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn=""/>
+                    <dxg:GridSummaryItem  FieldName="BOX" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="RUNNINGTIME" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="DOWNTIME" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn=""  />
+                    <dxg:GridSummaryItem FieldName="STOPCOUNT" SummaryType="Sum" DisplayFormat=" {0:n0}" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="WASTE%" SummaryType="Average" DisplayFormat=" 0.0;(0.0);0" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="WASTEBOX%" SummaryType="Average" DisplayFormat=" 0.0;(0.0);0" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="DELAY%" SummaryType="Average" DisplayFormat=" 0.0;(0.0);0" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="PRODUCTIVITY" SummaryType="Average" DisplayFormat=" 0.0;(0.0);0" ShowInColumn=""/>
+                    <dxg:GridSummaryItem FieldName="OEE2" SummaryType="Average" DisplayFormat=" 0.0;(0.0);0"  ShowInColumn=""/>
+                </dxg:GridControl.TotalSummary>
+            </dxg:GridControl>
+
+        </Grid>
+
+        <!--<DatePicker  HorizontalAlignment="Left" Margin="400,26,0,0" Grid.Row="1"  Grid.Column="1" VerticalAlignment="Top" Width="137" 
+                                    SelectedDate="{Binding DataContext.Etime, RelativeSource={RelativeSource AncestorType={x:Type win}}}"
+                                    />-->
+
+        <!--<ScrollViewer Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Width="200" VerticalContentAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                          MaxHeight="320"  Height="auto"  Margin="600,0,0,400" Panel.ZIndex="1">
+            <StackPanel >
+                <Expander Header="추가 컬럼" BorderBrush="DarkSlateGray" Foreground="DarkSlateGray">
+                    <StackPanel>
+                        <CheckBox x:Name="Cb_ColumnsAllCheck" Margin="10,10,0,0" Foreground="Black" FontSize="18" Content="ALL"/>
+                        <CheckBox x:Name="Cb_RUNNINGTIME" Margin="10,10,0,0" Foreground="DarkSlateGray" Style="{StaticResource ComboAllCheck}" Content="RUNNING TIME"/>
+                        <CheckBox x:Name="Cb_DOWNTIME" Margin="10,10,0,0" Foreground="DarkSlateGray" Style="{StaticResource ComboAllCheck}" Content="DOWN TIME"/>
+                        <CheckBox x:Name="Cb_STOPCOUNT" Margin="10,10,0,0" Foreground="DarkSlateGray" Style="{StaticResource ComboAllCheck}" Content="SOTP COUNT"/>
+                        <CheckBox x:Name="Cb_WASTEPER" Margin="10,10,0,0" Foreground="DarkSlateGray" Style="{StaticResource ComboAllCheck}" Content="WASTE%"/>
+                        <CheckBox x:Name="Cb_WASTEBOXPER" Margin="10,10,0,0" Foreground="DarkSlateGray" Style="{StaticResource ComboAllCheck}" Content="WASTE BOX%"/>
+                        <CheckBox x:Name="Cb_DELAYPER" Margin="10,10,0,0" Foreground="DarkSlateGray" Style="{StaticResource ComboAllCheck}" Content="DELAY%"/>
+                        <CheckBox x:Name="Cb_PRODUCTIVITY" Margin="10,10,0,0" Foreground="DarkSlateGray" Style="{StaticResource ComboAllCheck}" Content="PRODUCTIVITY"/>
+                        <CheckBox x:Name="Cb_OEE2" Margin="10,10,0,0" Foreground="DarkSlateGray" Style="{StaticResource ComboAllCheck}" Content="OEE2"/>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>-->
+
+    </Grid>
+</Page>

@@ -1,0 +1,250 @@
+﻿<Window x:Class="DMSGalaxy.Main.Cons.Wd_Logins"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Passwordbar ="clr-namespace:DMSGalaxy.Common.Helper;assembly=DMSGalaxy.Common"
+       Height="560" Width="340" WindowStyle="None" ResizeMode="NoResize"  Closed="Window_Closed" 
+        Loaded="wd_main_Loaded" KeyDown="wnd_KeyDown" >
+    <Window.Resources>
+        <Style x:Key="{x:Type PasswordBox}"
+        TargetType="{x:Type PasswordBox}">
+            <Setter Property="Passwordbar:PasswordBoxMonitor.IsMonitoring"  Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border Name="Bd"
+                    Background="{TemplateBinding Background}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    SnapsToDevicePixels="true">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <TextBlock Text="Password" 
+                           Margin="4, 2, 0, 0"
+                           Foreground="White" 
+                           Visibility="Collapsed"
+                           Name="txtPrompt" 
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           FontFamily="Yu Gothic"  FontStyle="Normal"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled"
+                                         Value="false">
+                                <Setter TargetName="Bd"
+                                            Property="Background"
+                                            Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground"
+                                            Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="Passwordbar:PasswordBoxMonitor.PasswordLength" Value="0">
+                                <Setter Property="Visibility" TargetName="txtPrompt" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="#1B6097" BorderBrush="#1C7BAF" BorderThickness="0" />
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0,0,0,0" VerticalAlignment="Center" />
+                            <Label Margin="0,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center" Height="40" 
+                               FontFamily="Yu Gothic"  FontStyle="Normal"
+                               Visibility="Collapsed" Foreground="White"  FontSize="20"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!--<ControlTemplate TargetType="Button" x:Key="square">
+            <Border Background="#365B91" CornerRadius="4">
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+        </ControlTemplate>
+        
+        <Style TargetType="Button" x:Key="SetButton">
+            <Setter Property="Template" Value="{StaticResource square}"/>
+        </Style>-->
+
+        <SolidColorBrush x:Key="IsMouseOverBackground" Color="White" />
+        <SolidColorBrush x:Key="IsPressedBrush" Color="#365B91" />
+        <SolidColorBrush x:Key="ButtonBrush" Color="#365B91" />
+
+        <Storyboard x:Key="ChangeBackgroundStoryboard">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{StaticResource ButtonBrush}" />
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Style x:Key="FlatButtonBaseStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="60" />
+            <Setter Property="Height" Value="20" />
+            <!--<Setter Property="BorderThickness" Value="1" />-->
+            <!--<Setter Property="BorderBrush" Value="Gray" />-->
+            <Setter Property="Background" Value="#4674BA" />
+            <Setter Property="FontSize" Value="16"/>
+            <!--<Setter Property="FontWeight" Value="Bold"/>-->
+            <Setter Property="Foreground" Value="White"/>
+                
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Name="Border"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="4">
+                        <!--BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"-->
+
+                            <ContentPresenter Name="Content"
+                                      Content="{TemplateBinding Content}" 
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      TextBlock.FontFamily="{TemplateBinding FontFamily}" 
+                                      TextBlock.FontSize="{TemplateBinding FontSize}" />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource IsMouseOverBackground}" />
+                                <Setter Property="Opacity" Value="1" />
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource IsPressedBrush}" />
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+
+                            <!-- Here -->
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <BeginStoryboard Storyboard="{StaticResource ChangeBackgroundStoryboard}" />
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Border x:Name="BorderRoot" Grid.Row="1">
+        <!--<Border.Triggers>
+            <EventTrigger RoutedEvent="Border.MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="qrdCover" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.8"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Border.MouseLeave">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="qrdCover" Storyboard.TargetProperty="Opacity" To="0.7" Duration="0:0:0.8"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Border.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="qrdCover" Storyboard.TargetProperty="Opacity" To="0.7" Duration="0:0:0.8"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Border.Triggers>-->
+        <Grid x:Name="qrdCover" Background="#145C88" MouseDown="Label_MouseDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border BorderBrush="#1C7BAF" BorderThickness="0"/>
+            <!--<Grid.Background>
+                --><!--<ImageBrush Stretch="Fill">
+                    <ImageBrush.ImageSource>
+                        <BitmapImage UriSource="/Images/background.jpg"/>
+                    </ImageBrush.ImageSource>
+                </ImageBrush>--><!--
+            </Grid.Background>-->
+            <Image x:Name="Images" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Height="150" Width="150" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                                Source="/DMSGalaxy.Main;component/Images/DMS_GalaxyLogo.png"/>
+            <Grid Grid.Column="0" Grid.Row="2"  Height="40"  Width="50" HorizontalAlignment="Right" Background="#1B6097"  >
+                <!--<Grid.Effect>
+                    <DropShadowEffect Direction="320" ShadowDepth="3" Color="#2B3D47"/>
+                </Grid.Effect>-->
+                <Border BorderBrush="#1C7BAF" BorderThickness="0"/>
+                <Image x:Name="ImagesUser" Width="32" Height="32" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Source="/DMSGalaxy.Main;component/Images/User.png"/>
+            </Grid>
+
+            <Grid Grid.Column="0" Grid.Row="3"  Height="40"  Width="50" HorizontalAlignment="Right" Background="#1B6097"  >
+                <!--<Grid.Effect>
+                    <DropShadowEffect Direction="320" ShadowDepth="3" Color="#2B3D47"/>
+                </Grid.Effect>-->
+                <Border BorderBrush="#1C7BAF" BorderThickness="0"/>
+                <Image x:Name="ImagesPassword" Width="26" Height="26" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Source="/DMSGalaxy.Main;component/Images/Password.png" />
+            </Grid>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="NanumGothic"  FontStyle="Normal"
+                                        Padding="0" TextWrapping="Wrap" TextOptions.TextFormattingMode="Display"  >
+                <!--<TextBlock.Effect>
+                    --><!--<DropShadowEffect Direction="320" ShadowDepth="8" Color="Aqua"/>--><!--
+                    <DropShadowEffect Direction="320" ShadowDepth="10" Color="#2B3D47"/>
+                </TextBlock.Effect>-->
+                DMSG ArchesrA
+            </TextBlock>
+            <Button x:Name="btnLogin" Content="Log In" HorizontalAlignment="Center" VerticalAlignment="Center" Width="320" Height="40" Click="btnLogin_Click" 
+                               Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Style="{StaticResource FlatButtonBaseStyle}">
+                <Button.Effect>
+                    <DropShadowEffect Direction="320" ShadowDepth="1" Color="#2B3D47"/>
+                </Button.Effect>
+            </Button>
+            <TextBox x:Name="txtInputID" HorizontalAlignment="Left"  Height="40" TextWrapping="Wrap" VerticalAlignment="Center" Width="268"  PreviewKeyDown="txtpSpace_PreviewKeyDown" FontSize="20"
+                     Style="{StaticResource MyWaterMarkStyle}" Tag=" User" Grid.Column="1"  Grid.Row="2" Foreground="White" VerticalContentAlignment="Center"  TextOptions.TextFormattingMode="Display" FontWeight="Bold"   >
+                <!--<TextBox.Effect>
+                    <DropShadowEffect Direction="320" ShadowDepth="3" Color="#2B3D47"/>
+                </TextBox.Effect>-->
+            </TextBox>
+            <PasswordBox x:Name="PwBoxInputPW" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="268"  Password="" BorderBrush="#1B6097" FontSize="18" 
+                                    PasswordChar="●" PreviewKeyDown="txtpSpace_PreviewKeyDown" Background="#1B6097" Grid.Column="1"  Grid.Row="3" Foreground="White" VerticalContentAlignment="Center" TextOptions.TextFormattingMode="Display" FontWeight="Bold"  >
+                <!--<PasswordBox.Effect>
+                    <DropShadowEffect Direction="320" ShadowDepth="3" Color="#2B3D47"/>
+                </PasswordBox.Effect>-->
+            </PasswordBox>
+            <Button x:Name="btnClose" Content="Exit" HorizontalAlignment="Center" VerticalAlignment="Center" Width="320" Height="40" Click="Window_Closed" 
+                                Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Style="{StaticResource  FlatButtonBaseStyle}">
+                <Button.Effect>
+                    <DropShadowEffect Direction="320" ShadowDepth="1" Color="#2B3D47"/>
+                </Button.Effect>
+            </Button>                
+        </Grid>
+    </Border>
+</Window>

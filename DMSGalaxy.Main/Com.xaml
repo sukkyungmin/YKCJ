@@ -1,0 +1,54 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" x:Class="DMSGalaxy.Main.Com"
+        Title="Com" Height="300" Width="300" Loaded="Window_Loaded" Visibility="Visible" WindowStyle="None" ResizeMode="NoResize" >
+    <Grid>
+
+        <dxc:ChartControl HorizontalAlignment="Left" Margin="64,151,0,0" VerticalAlignment="Top">
+            <dxc:ChartControl.Legends>
+                <dxc:Legend/>
+            </dxc:ChartControl.Legends>
+            <dxc:XYDiagram2D>
+                <dxc:BarSideBySideSeries2D DisplayName="Series 1"/>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+        <dxc:Chart3DControl HorizontalAlignment="Left" Margin="50,63,0,0" VerticalAlignment="Top">
+            <dxc:Chart3DControl.Legends>
+                <dxc:Legend BorderBrush="Transparent" Background="Transparent"/>
+            </dxc:Chart3DControl.Legends>
+            <dxc:Series3DStorage>
+                <dxc:Series3D DisplayName="Series 1">
+                    <dxc:Series3D.View>
+                        <dxc:SurfaceSeriesView>
+                            <dxc:SurfaceSeriesView.FillStyle>
+                                <dxc:GradientFillStyle/>
+                            </dxc:SurfaceSeriesView.FillStyle>
+                        </dxc:SurfaceSeriesView>
+                    </dxc:Series3D.View>
+                    <dxc:SeriesPoint3DStorage>
+                        <dxc:SeriesPoint3D Value="0" XArgument="0" YArgument="0"/>
+                        <dxc:SeriesPoint3D Value="0" XArgument="0" YArgument="1"/>
+                        <dxc:SeriesPoint3D Value="1" XArgument="1" YArgument="0"/>
+                        <dxc:SeriesPoint3D Value="1" XArgument="1" YArgument="1"/>
+                        <dxc:SeriesPoint3D Value="0" XArgument="2" YArgument="0"/>
+                        <dxc:SeriesPoint3D Value="0" XArgument="2" YArgument="1"/>
+                        <dxc:SeriesPoint3D Value="1" XArgument="3" YArgument="0"/>
+                        <dxc:SeriesPoint3D Value="1" XArgument="3" YArgument="1"/>
+                    </dxc:SeriesPoint3DStorage>
+                </dxc:Series3D>
+            </dxc:Series3DStorage>
+        </dxc:Chart3DControl>
+
+        <dxe:TextEdit HorizontalAlignment="Left" Margin="15,13,0,0" VerticalAlignment="Top" Width="150"/>
+
+        <dxg:GridControl AutoGenerateColumns="AddNew" EnableSmartColumnsGeneration="True" HorizontalAlignment="Left" Margin="224,13,0,0" VerticalAlignment="Top">
+            <dxg:GridControl.View>
+                <dxg:TableView AllowPerPixelScrolling="True" ShowTotalSummary="True"/>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <dxe:PasswordBoxEdit HorizontalAlignment="Left" Margin="101,267,0,0" VerticalAlignment="Top" Width="150"/>
+        <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="31,63,0,0" VerticalAlignment="Top" Width="150"/>
+
+    </Grid>
+</Window>

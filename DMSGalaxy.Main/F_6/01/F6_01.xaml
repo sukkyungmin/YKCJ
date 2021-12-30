@@ -1,0 +1,13 @@
+﻿<Page x:Class="DMSGalaxy.Main.F_6._01.F6_01"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="760" d:DesignWidth="1150"
+	  Title="F6_01" Width="1150" Height="760" Background="White">
+
+    <Grid>
+        
+    </Grid>
+</Page>

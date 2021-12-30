@@ -1,0 +1,23 @@
+﻿<Window x:Class="DMSGalaxy.Main.Common.Wd_Loader"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:DMSGalaxy.Main.Common"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        WindowStyle="None" WindowStartupLocation="CenterScreen" Closed="Window_Closed" Background="Black" AllowsTransparency="True"
+        Title="MainWindow" Height="100" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="400*"/>
+        </Grid.ColumnDefinitions>
+        <Controls:Con_Spinner Grid.Column="0" Grid.RowSpan="2"/>
+        <!--<Controls1:Con_Spinner Grid.Column="0" Grid.RowSpan="2"/>-->
+        <Label x:Name="lbl_title1"   Margin="0" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0" FontFamily="NanumGothic" FontSize="55" Foreground="White">
+            <Label.Effect>
+                <!--<DropShadowEffect Direction="320" ShadowDepth="8" Color="Aqua"/>-->
+                <DropShadowEffect Direction="320" ShadowDepth="8" Color="#FF8BB0B0"/>
+            </Label.Effect>
+            Loading...
+        </Label>
+    </Grid>
+</Window>
