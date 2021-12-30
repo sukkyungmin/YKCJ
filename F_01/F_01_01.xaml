@@ -1,0 +1,950 @@
+﻿<Page x:Class="YKCJ_EngineerReport.F_01.F_01_01"
+      xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml" 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:CmMt ="clr-namespace:YKCJViewModel.Common;assembly=YKCJViewModel"
+      xmlns:local="clr-namespace:YKCJ_EngineerReport.F_01"
+      mc:Ignorable="d" 
+      d:DesignHeight="760" d:DesignWidth="1350"
+      Title="F_01_01">
+    <Page.Resources>
+        
+        <!-- Image Visibility Converter -->
+        <CmMt:F_01_SingleValueImageConverter x:Key="SnValNgtv"/>
+
+        <!-- Button Visibility Converter -->
+        <CmMt:F_01_SingleValueButConverter x:Key="SnValBut"/>
+
+        <CmMt:MultiValueEqualityConverter x:Key="multiValueEqualityConverter"/>
+
+    </Page.Resources>
+    <!--<Page.Resources>
+            <SolidColorBrush x:Key="IsMouseOverBackground" Color="#2FACE2" />
+            <SolidColorBrush x:Key="IsPressedBrush" Color="White" />
+
+            <Style x:Key="FlatButtonBaseStyle" TargetType="{x:Type Button}">
+                <Setter Property="Width" Value="60" />
+                <Setter Property="Height" Value="20" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="#2EACE3"/>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Name="Border"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="4"
+                        >
+
+                                <ContentPresenter Name="Content"
+                                      Content="{TemplateBinding Content}" 
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                      TextBlock.FontFamily="{TemplateBinding FontFamily}" 
+                                      TextBlock.FontSize="{TemplateBinding FontSize}" />
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="{StaticResource IsMouseOverBackground}" />
+                                    <Setter Property="Opacity" Value="1" />
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding }">
+                    
+                </DataTrigger>
+            </Style.Triggers>
+            </Style>
+    </Page.Resources>-->
+
+    <Grid Background="{StaticResource white0Brush}">
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="IsEnabled" Value="True"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Downloadlock}" Value="False">
+                        <Setter Property="IsEnabled" Value="False"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Savelock}" Value="False">
+                        <Setter Property="IsEnabled" Value="False"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ReportSavemode}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Modifymode}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="220"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+
+                        <TextBlock Text="Date" VerticalAlignment="Center" Margin="10,5,0,0" FontSize="16" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                        <DatePicker SelectedDate="{Binding Eventdatetime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" Height="30" FontSize="16" Margin="10"/>
+                        <materialDesign:TimePicker SelectedTime="{Binding Eventdatetime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" Height="30" FontSize="16"  Margin="20"/>
+
+                        <TextBlock Text="DelayTime" VerticalAlignment="Center" Margin="50,5,0,0" FontSize="16" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                        <TextBox x:Name="_Dleaytimetextbox" Text="{Binding Delaytime , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80" Height="30" Margin="10" FontSize="16" 
+                             HorizontalContentAlignment="Right" PreviewTextInput="Delaytime_PreviewTextInput"/>
+                        <TextBlock Text="분" VerticalAlignment="Center" Margin="0,5,0,0" FontSize="16" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+
+                        <TextBlock Text="CheckTime" VerticalAlignment="Center" Margin="30,5,0,0" FontSize="16" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                        <TextBox x:Name="_Checktimetextbox" Text="{Binding Checktime , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80" Height="30" Margin="10" FontSize="16" 
+                             HorizontalContentAlignment="Right" PreviewTextInput="Checktime_PreviewTextInput"/>
+                        <TextBlock Text="분" VerticalAlignment="Center" Margin="0,5,0,0" FontSize="16" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+
+                    </StackPanel>
+                    <!--<StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
+                        <TextBlock Text="작성자 : " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,0" FontSize="16" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                        <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,10,0" FontSize="16" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Text" Value="{Binding Username}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Modifymode}" Value="1">
+                                            <Setter Property="Text" Value="{Binding Modifyusername}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>-->
+
+                    <ComboBox Grid.Column="4" ItemsSource="{Binding UsernameList}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Selectusername, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="User Name"
+                              Width="150">
+                    </ComboBox>
+
+                </Grid>
+
+                <Grid  Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--<TextBlock Grid.Column="0" Text="Shift" VerticalAlignment="Top" Margin="24,8,0,0" FontSize="12" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <ComboBox Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Height="36" Style="{StaticResource LimitComboxStyle}" ItemsSource="{Binding ShiftList}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Selectshift, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+
+                    <ComboBox Grid.Column="0" ItemsSource="{Binding ShiftList}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Selectshift, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="Shift(조)"
+                              Width="120">
+                    </ComboBox>
+
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding Machinelist}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Selectmachine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="Machine"
+                              Width="150">
+                    </ComboBox>
+
+                    <ComboBox Grid.Column="2" ItemsSource="{Binding ClassList}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Selectclass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="Class"
+                              Width="150">
+                    </ComboBox>
+
+                    <ComboBox Grid.Column="3" ItemsSource="{Binding Modulepart1list}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Selectpart1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="Module Part1"
+                              Width="210">
+                    </ComboBox>
+
+                    <ComboBox Grid.Column="4" ItemsSource="{Binding Modulepart2list}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Selectpart2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="Module Part2"
+                                materialDesign:HintAssist.HelperText="Select one Part1"
+                              Width="210">
+                    </ComboBox>
+
+                    <!--<TextBlock Grid.Column="1" Text="Machine" VerticalAlignment="Top" Margin="24,8,0,0" FontSize="12" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <ComboBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="140" Height="36" Style="{StaticResource LimitComboxStyle}" ItemsSource="{Binding Machinelist}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Selectmachine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+
+                    <!--<TextBlock Grid.Column="2" Text="Class" VerticalAlignment="Top" Margin="24,8,0,0" FontSize="12" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <ComboBox Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="140" Height="36" Style="{StaticResource LimitComboxStyle}" ItemsSource="{Binding ClassList}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Selectclass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+
+                    <!--<TextBlock Grid.Column="3" Text="Part1" VerticalAlignment="Top" Margin="24,8,0,0" FontSize="12" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <ComboBox Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Height="36" Style="{StaticResource LimitComboxStyle}" ItemsSource="{Binding Modulepart1list}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Selectpart1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+
+                    <!--<TextBlock Grid.Column="4" Text="Part2" VerticalAlignment="Top" Margin="24,8,0,0" FontSize="12" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <materialDesign:PackIcon Grid.Column="4"  Height="12" Width="12" Kind="AlertOutline" Foreground="#FFFF9595" VerticalAlignment="Top" Margin="0,10,94,0" HorizontalAlignment="Right"/>-->
+                    <!--<TextBlock Grid.Column="4" Text="Part1 선택필수" VerticalAlignment="Top"  HorizontalAlignment="Right" Margin="0,10,26,0" FontSize="10" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <ComboBox Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Height="36" Style="{StaticResource LimitComboxStyle}" ItemsSource="{Binding Modulepart2list}"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Selectpart2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid HorizontalAlignment="Left" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" >
+                            <materialDesign:PackIcon Margin="8,0,0,0" Height="16" Width="16" Kind="BookClockOutline" Foreground="#FFF56C6C" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <TextBlock Margin="10,0,0,0" Text="{Binding Filepath}" VerticalAlignment="Center" FontSize="16" Foreground="Black" FontFamily="{StaticResource MaterialDesignFont}"/>
+                        </StackPanel>
+
+                        <TextBlock  Grid.Row="1" Margin="8,0,0,0" Text="{Binding Savefileprogress}" VerticalAlignment="Center" FontSize="18" Foreground="#FFF95B5B" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    </Grid>
+                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
+                        <Button Width="120" Height="28" Content="File Select" FontWeight="Bold" Command="{Binding CmdGetFilePath}"
+                        VerticalAlignment="Center"  TextOptions.TextFormattingMode="Ideal"/>
+                        <Button Width="120" Height="28" Content="File Cancel" FontWeight="Bold" Command="{Binding CmdSetFilePathCancel}" Margin="20,0,0,0"
+                        VerticalAlignment="Center"  TextOptions.TextFormattingMode="Ideal"/>
+                        <!--<Button Margin="10,0,0,0" Width="150" Height="28" Content="SAVE" FontWeight="Bold" Command="{Binding Cmdimagechange1}"
+                        VerticalAlignment="Top"  TextOptions.TextFormattingMode="Ideal"/>-->
+
+                    </StackPanel>
+                </Grid>
+                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                    <TextBlock Grid.Column="3" Text="Title" VerticalAlignment="Center" Margin="8,0,0,0" FontSize="16" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <Grid Width="860" Margin="8">
+                        <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                                 FontSize="14"/>
+                    </Grid>
+                    
+                    <!--<Button Height="30" Width="80" FontSize="12" Content="Option" VerticalAlignment="Center" Margin="0,10,0,0" Click="Button_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="{StaticResource Gray0Brush}"/>
+                                <Setter Property="Foreground" Value="{StaticResource white0Brush}"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=_TestRichTextbox, Path=Visibility}" Value="Visible">
+                                        <Setter Property="Background" Value="{StaticResource F_01_01_Icon0Brush}"/>
+                                    </DataTrigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource F_01_01_Icon0Brush}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>-->
+                    
+                </StackPanel>
+
+
+            </Grid>
+            <StackPanel x:Name="_Stackpanel" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1">
+                <c1:C1SimplifiedRichTextBoxToolbar x:Name="_TestRichTextbox" RichTextBox="{Binding ElementName=_C1rtb}" Visibility="Collapsed" Margin="5,0,5,0"/>
+                <c1:C1RichTextBox Margin="5,0,5,0" x:Name="_C1rtb" Grid.Row="1" BorderThickness="1" Height="437" Text="{Binding Detail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      Html="{Binding Detailhtml, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="16"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Modifymode}" Value="true">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <Button Margin="0,10,40,10" Height="40" Width="150" Content="버튼 초기" Command="{Binding CmdSetSaveReportDataClear}"/>
+                    <Button Margin="40,10,0,10" Height="40" Width="150" Content="신규 등록" Command="{Binding CmdWorkListSave}" CommandParameter="{Binding ElementName=_C1rtb}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Modifymode}" Value="false">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <Button Margin="40,10,0,10" Height="40" Width="150" Content="편집 등록" Command="{Binding CmdWorkListSave}" CommandParameter="{Binding ElementName=_C1rtb}"/>
+                    <Button Margin="40,10,0,10" Height="40" Width="150" Content="편집 취소" Command="{Binding CmdSetWorkListModifyCancel}"/>
+                </StackPanel>
+                <!--<c1:C1RichTextBox x:Name="_C1rtbz" Grid.Row="1" BorderThickness="0" Height="412"/>-->
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ReportSavemode}" Value="true">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Modifymode}" Value="true">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                <materialDesign:PackIcon Margin="5,0,0,0" Height="22" Width="22" Kind="FileTreeOutline" Foreground="{StaticResource F_01_01_Icon0Brush}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Margin="6,4,0,0" Text="Data" VerticalAlignment="Center" Foreground="{StaticResource F_01_01_IconText0Brush}" FontSize="18"  FontFamily="{StaticResource MaterialDesignFont}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                <materialDesign:PackIcon Margin="5,0,0,0" Height="22" Width="22" Kind="LeadPencil" Foreground="{StaticResource F_01_01_Icon0Brush}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Margin="6,4,0,0" Text="Problems" VerticalAlignment="Center" FontSize="18" Foreground="{StaticResource F_01_01_IconText0Brush}" FontFamily="{StaticResource MaterialDesignFont}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                <materialDesign:PackIcon Margin="0,0,0,0" Height="22" Width="22" Kind="Paperclip" Foreground="{StaticResource F_01_01_Icon0Brush}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Margin="6,4,0,0" Text="Attach File" VerticalAlignment="Center" FontSize="18" Foreground="{StaticResource F_01_01_IconText0Brush}" FontFamily="{StaticResource MaterialDesignFont}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
+                <materialDesign:PackIcon Margin="5,0,0,0" Height="22" Width="22" Kind="BookEditOutline" Foreground="{StaticResource F_01_01_Icon0Brush}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Margin="6,4,0,0" Text="Verification and Solution" VerticalAlignment="Center" FontSize="18" Foreground="{StaticResource F_01_01_IconText0Brush}" FontFamily="{StaticResource MaterialDesignFont}"/>
+            </StackPanel>
+            <Border Grid.Column="0" Grid.Row="1" BorderBrush="{StaticResource Gray1Brush}" BorderThickness="1" Margin="8,0,8,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="140"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" FontSize="12" Text="Date" Width="60" Height="18"
+                               Background="{StaticResource F_01_01_DataTextBGBrush}" Foreground="{StaticResource F_01_01_DataTextBrush}" TextAlignment="Left" Padding="4,0,0,0"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Foreground="{StaticResource black0Brush}"  Text="{Binding Eventdatetime, StringFormat=yyyy-MM-dd HH:mm:ss}" FontSize="16"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" FontSize="12" Text="Machine" Width="60" Height="18"
+                               Background="{StaticResource F_01_01_DataTextBGBrush}" Foreground="{StaticResource F_01_01_DataTextBrush}" TextAlignment="Left" Padding="4,0,0,0"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Foreground="{StaticResource black0Brush}"  Text="{Binding Selectmachine}" FontSize="16"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" FontSize="12" Text="Class" Width="60" Height="18"
+                               Background="{StaticResource F_01_01_DataTextBGBrush}" Foreground="{StaticResource F_01_01_DataTextBrush}" TextAlignment="Left" Padding="4,0,0,0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Foreground="{StaticResource black0Brush}"  Text="{Binding Selectclass}" FontSize="16"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" FontSize="12" Text="Module 1" Width="60" Height="18"
+                               Background="{StaticResource F_01_01_DataTextBGBrush}" Foreground="{StaticResource F_01_01_DataTextBrush}" TextAlignment="Left" Padding="4,0,0,0"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Foreground="{StaticResource black0Brush}"  Text="{Binding Selectpart1}" FontSize="16"/>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" FontSize="12" Text="Module 2" Width="60" Height="18"
+                               Background="{StaticResource F_01_01_DataTextBGBrush}" Foreground="{StaticResource F_01_01_DataTextBrush}" TextAlignment="Left" Padding="4,0,0,0"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Foreground="{StaticResource black0Brush}"  Text="{Binding Selectpart2}" FontSize="16"/>
+
+
+                    <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" FontSize="12" Text="Name" Width="60" Height="18"
+                               Background="{StaticResource F_01_01_DataTextBGBrush}" Foreground="{StaticResource F_01_01_DataTextBrush}" TextAlignment="Left" Padding="4,0,0,0"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" Foreground="{StaticResource black0Brush}"  Text="{Binding Usershiftname}" FontSize="16"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Grid Margin="0,0,4,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Delay" Foreground="{StaticResource Red0Brush}" FontSize="18" HorizontalAlignment="Center"/>
+                            <Border Grid.Row="1" Width="70" Height="40" BorderThickness="1" BorderBrush="{StaticResource black0Brush}">
+                                <TextBlock Grid.Row="1" Text="{Binding Delaytime}" FontSize="24" HorizontalAlignment="Center" Foreground="{StaticResource Red0Brush}" VerticalAlignment="Center" TextDecorations="Underline"/>
+                            </Border>
+                            
+                        </Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Check" Foreground="{StaticResource Blue0Brush}" FontSize="18" HorizontalAlignment="Center"/>
+                            <Border Grid.Row="1" Width="70" Height="40" BorderThickness="1" BorderBrush="{StaticResource black0Brush}">
+                                <TextBlock Grid.Row="1" Text="{Binding Checktime}" FontSize="24" HorizontalAlignment="Center" Foreground="{StaticResource Blue0Brush}" VerticalAlignment="Center" />
+                            </Border>
+
+                        </Grid>
+                    </StackPanel>
+                    <TextBlock Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Text="@Minute" FontSize="14" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="0" Grid.Row="3" BorderBrush="{StaticResource Gray1Brush}" BorderThickness="1" Margin="8,0,8,0">
+                <Grid>
+                    <TextBlock Text="{Binding Title}" VerticalAlignment="Top" Margin="5" FontSize="16" Foreground="{StaticResource black0Brush}" 
+                                       TextWrapping="Wrap" FontFamily="{StaticResource MaterialDesignFont}"/>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" BorderBrush="{StaticResource Gray1Brush}" BorderThickness="1" Margin="4,0,8,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                        <TextBlock Margin="8,0,0,0"  VerticalAlignment="Center" FontSize="12" Foreground="{StaticResource black0Brush}" FontFamily="{StaticResource MaterialDesignFont}"
+                                   Text="File  : "/>
+                        <TextBlock Margin="0,0,0,0"  VerticalAlignment="Center" FontSize="12" Foreground="{StaticResource F_01_01_Red0Brush}" FontFamily="{StaticResource MaterialDesignFont}"
+                                   Text="{Binding Savefilenamedisplay}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Savefilenamedisplay}" Value="">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBlock Margin="8,0,0,0"  VerticalAlignment="Center" FontSize="12" Foreground="{StaticResource black0Brush}" FontFamily="{StaticResource MaterialDesignFont}"
+                                   Text="Size : "/>
+                        <TextBlock Margin="0,0,0,0"  VerticalAlignment="Center" FontSize="12" Foreground="{StaticResource F_01_01_Red0Brush}" FontFamily="{StaticResource MaterialDesignFont}"
+                                   Text="{Binding Savefilesizedisplay}"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Margin="8,0,0,0" Text="{Binding Savefileprogress}" VerticalAlignment="Center" FontSize="14" Foreground="{StaticResource F_01_01_Red0Brush}" FontFamily="{StaticResource MaterialDesignFont}"/>
+
+                    <!--<Image Grid.Row="3" Grid.Column="0" Stretch="Fill" Margin="8" Source="{Binding Filepath}" 
+                           Visibility="{Binding Image}"/>-->
+                    <materialDesign:PackIcon Grid.Row="3" Grid.Column="0" Margin="8" Height="150" Width="150"  VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding Icons}">
+                        <materialDesign:PackIcon.Style>
+                            <Style TargetType="materialDesign:PackIcon">
+                                <Setter Property="Kind" Value="ImageMultiple"/>
+                                <Setter Property="Foreground" Value="{StaticResource F_01_01_Icon0Brush}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Savefileformdisplay}" Value=".xlsx">
+                                        <Setter Property="Kind" Value="FileExcel"/>
+                                        <Setter Property="Foreground" Value="{StaticResource F_01_01_ExcelBrush}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Savefileformdisplay}" Value=".pdf">
+                                        <Setter Property="Kind" Value="FilePdfOutline"/>
+                                        <Setter Property="Foreground" Value="{StaticResource F_01_01_PDFBrush}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Savefileformdisplay}" Value=".docx">
+                                        <Setter Property="Kind" Value="FileWordOutline"/>
+                                        <Setter Property="Foreground" Value="{StaticResource F_01_01_WordBrush}"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Savefileformdisplay}" Value=".pptx">
+                                        <Setter Property="Kind" Value="FilePowerpointOutline"/>
+                                        <Setter Property="Foreground" Value="{StaticResource F_01_01_PowerPointBrush}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </materialDesign:PackIcon.Style>
+                    </materialDesign:PackIcon>
+
+                    <StackPanel Orientation="Vertical" Grid.Row="4" Grid.Column="2" Margin="0,20,0,0">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Savefilenamedisplay}" Value="">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Savefilenamedisplay}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <Button Width="90" Height="50" Content="파일 열기" FontSize="13" Command="{Binding CmdGetFileOpen}" CommandParameter="{Binding Filepath}"/>
+                        <Button Margin="0,20,0,0" Width="90" Height="50" Content="다운로드" FontSize="13" Command="{Binding CmdGetFileDownload}" CommandParameter="{Binding Filepath}"/>
+
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" BorderBrush="{StaticResource Gray1Brush}" BorderThickness="1" Margin="8,0,8,8">
+                <Grid>
+                    <c1:C1RichTextBox FocusCuesVisibility="Hidden" BorderBrush="White" Margin="5" FontSize="12"  Html="{Binding Detailhtml, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Focusable="False"/>
+                </Grid>
+            </Border>
+    
+            <!--<TextBlock Text="떠나다?" FontSize="180" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="0" Background="{StaticResource black0Brush}">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Modifymode}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="1,0,0,0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="신규 등록" Command="{Binding CmdReportSaveMode}" FontSize="18" FontWeight="Black">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="{StaticResource white0Brush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource F_01_01_Icon0Brush}"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ReportSavemode}" Value="false">
+                                    <Setter Property="Background" Value="{StaticResource Gray0Brush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource white0Brush}"/>
+                                </DataTrigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource white0Brush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource F_01_01_Icon0Brush}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button Grid.Column="1" Content="자료 검색" Command="{Binding CmdReportViewMode}" FontSize="18" FontWeight="Black">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="{StaticResource white0Brush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource F_01_01_Icon0Brush}"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ReportSavemode}" Value="true">
+                                    <Setter Property="Background" Value="{StaticResource Gray0Brush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource white0Brush}"/>
+                                </DataTrigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource white0Brush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource F_01_01_Icon0Brush}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+
+            <StackPanel Grid.Row="1" Margin="1,0,0,0" Background="{StaticResource white0Brush}">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ReportSavemode}" Value="false">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Margin="1,0,0,0" Background="{StaticResource white0Brush}">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ReportSavemode}" Value="True">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <!--<Viewbox HorizontalAlignment="Center" Height="40">
+                    <DatePicker SelectedDate="{Binding Searchdate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  FontSize="16" />
+                </Viewbox>-->
+
+                <Grid Height="70">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="40"/>
+                    </Grid.ColumnDefinitions>
+                    <DatePicker SelectedDate="{Binding Searchdate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="150" Height="30" FontSize="16"/>
+                    <Button Grid.Column="1"  Height="40" Width="100" Content="검색" Command="{Binding CmdGetWorkList}"/>
+                    <ProgressBar Grid.Column="2" Width="30" Height="30"
+                      Style="{StaticResource MaterialDesignCircularProgressBar}"
+                      Value="0"
+                      IsIndeterminate="{Binding Reportloadprogress}" />
+                </Grid>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <!--<RadioButton  Width="100"
+                              IsChecked="{Binding Searchdaily , UpdateSourceTrigger=PropertyChanged}"
+                              GroupName="GroupChoiceChip"
+                              Content="Daily" />
+                    <RadioButton  Width="100"
+                              IsChecked="{Binding Searchweekly, UpdateSourceTrigger=PropertyChanged}"
+                              GroupName="GroupChoiceChip"
+                              Content="weekly" />
+                    <RadioButton  Width="100"
+                              IsChecked="{Binding Searchmonthly, UpdateSourceTrigger=PropertyChanged}"
+                              GroupName="GroupChoiceChip"
+                              Content="Monthly" />-->
+                    <RadioButton
+                        Style="{StaticResource MaterialDesignTabRadioButton}" FontWeight="Black" Foreground="{StaticResource F_01_01_IconText0Brush}"
+                        Width="100" Margin="5" GroupName="GroupChoiceChip"
+                        IsChecked="{Binding Searchdaily , UpdateSourceTrigger=PropertyChanged}"
+                        Content="Daily" />
+                    <RadioButton
+                        Style="{StaticResource MaterialDesignTabRadioButton}" FontWeight="Black" Foreground="{StaticResource F_01_01_IconText0Brush}"
+                        Width="100" Margin="5" GroupName="GroupChoiceChip"
+                        IsChecked="{Binding Searchweekly , UpdateSourceTrigger=PropertyChanged}"
+                        Content="weekly" />
+                    <RadioButton
+                        Style="{StaticResource MaterialDesignTabRadioButton}" FontWeight="Black" Foreground="{StaticResource F_01_01_IconText0Brush}"
+                        Width="100" Margin="5" GroupName="GroupChoiceChip"
+                        IsChecked="{Binding Searchmonthly , UpdateSourceTrigger=PropertyChanged}"
+                        Content="Monthly" />
+                </StackPanel>
+
+                <TextBlock Margin="16,10,0,10" Text="{Binding Searchdatestring , StringFormat= 검색기간 : {0}}" HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="12"
+                           Foreground="{StaticResource Red0Brush}"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ReportNxPvBtnVbMode}" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <Button Margin="20,5,0,5" Height="40" Width="110" Content="Previous" Command="{Binding CmdGetWorkListChange}" CommandParameter="1"
+                        FontSize="16">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="Background" Value="{StaticResource white0Brush}"/>
+                                <Setter Property="Foreground" Value="{StaticResource F_01_01_NxPrMouseOverBrush}"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{StaticResource F_01_01_NxPrMouseOverBrush}"
+                                                BorderThickness="2" CornerRadius="5">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ReportNxPvBtnVbMode}" Value="0">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ReportNxPvBtnVbMode}" Value="1">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource F_01_01_NxPrMouseOverBrush}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource white0Brush}"/>
+
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+
+                    <Button Margin="20,5,20,5" Height="40" Width="50" Command="{Binding CmdGetWorkListChange}" CommandParameter="3"
+                        FontSize="16">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="Background" Value="{StaticResource white0Brush}"/>
+                                <Setter Property="Foreground" Value="{StaticResource F_01_01_Icon0Brush}"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{StaticResource F_01_01_Icon0Brush}"
+                                                BorderThickness="2" CornerRadius="10">
+                                                <materialDesign:PackIcon  Height="22" Width="22" Kind="settingsbackuprestore" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ReportNxPvBtnVbMode}" Value="0">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ReportNxPvBtnVbMode}" Value="1">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource F_01_01_Icon0Brush}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource white0Brush}"/>
+
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+
+                    <Button Margin="0,5,0,5" Height="40" Width="110" Content="Next" Command="{Binding CmdGetWorkListChange}" CommandParameter="2"
+                        FontSize="16">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="Background" Value="{StaticResource white0Brush}"/>
+                                <Setter Property="Foreground" Value="{StaticResource F_01_01_NxPrMouseOverBrush}"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}" BorderBrush="{StaticResource F_01_01_NxPrMouseOverBrush}"
+                                                BorderThickness="2" CornerRadius="5">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ReportNxPvBtnVbMode}" Value="0">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ReportNxPvBtnVbMode}" Value="3">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource F_01_01_NxPrMouseOverBrush}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource white0Brush}"/>
+
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,20,0">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ReportSavemode}" Value="false">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+                    <TextBlock Text="Page " FontSize="15" FontWeight="SemiBold" Foreground="{StaticResource Gray1Brush}"/>
+                    <TextBlock Text="{Binding WorkListcurrentidx}" FontSize="15" FontWeight="SemiBold"  Foreground="{StaticResource F_01_01_Blue0Brush}"/>
+                    <TextBlock Text="/" FontSize="15" Margin="4,0,4,0" FontWeight="SemiBold" Foreground="{StaticResource F_01_01_IconText0Brush}"/>
+                    <TextBlock Text="{Binding WorkListTotalcount}" FontSize="15" FontWeight="SemiBold" Foreground="{StaticResource F_01_01_IconText0Brush}"/>
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,20,10">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ReportNxPvBtnVbMode}" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+
+                    <Grid Margin="0,0,10,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="T.Delay" Foreground="{StaticResource Red0Brush}" FontSize="18" HorizontalAlignment="Center"/>
+                        <Border Grid.Row="1" Width="80" Height="40" BorderThickness="1" BorderBrush="{StaticResource black0Brush}">
+                            <TextBlock Grid.Row="1" Text="{Binding WorkListtimesum.Rows[0][TotalDelayTime]}" FontSize="20" HorizontalAlignment="Center" Foreground="{StaticResource Red0Brush}" VerticalAlignment="Center" TextDecorations="Underline"/>
+                        </Border>
+
+                    </Grid>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Text="T.Check" Foreground="{StaticResource Blue0Brush}" FontSize="18" HorizontalAlignment="Center"/>
+                        <Border Grid.Row="1" Width="80" Height="40" BorderThickness="1" BorderBrush="{StaticResource black0Brush}">
+                            <TextBlock Grid.Row="1" Text="{Binding WorkListtimesum.Rows[0][TotalCheckTime]}" FontSize="20" HorizontalAlignment="Center" Foreground="{StaticResource Blue0Brush}" VerticalAlignment="Center" />
+                        </Border>
+
+                    </Grid>
+                    <Button FontSize="14" Height="40"  Width="120" Margin="20,22,0,0" Content="Report" Click="ReportOpen_Click" />
+                </StackPanel>
+
+
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Value="True">
+                                    <DataTrigger.Binding>
+                                        <MultiBinding Converter="{StaticResource SnValBut}">
+                                            <Binding Path="LoginUses"/>
+                                            <Binding Path="WorkListTotalcount"/>
+                                        </MultiBinding>
+                                    </DataTrigger.Binding>
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
+
+
+                    <Button Command="{Binding CmdWorkListDelete}" CommandParameter="{Binding Workidx}" FontSize="14"  Width="120" Content="삭제" Margin="0,0,10,0"/>
+                    <Button Command="{Binding CmdSetWorkListModify}" FontSize="14"  Width="120" Content="편집" Margin="10,0,0,0"/>
+
+                </StackPanel>
+
+            </StackPanel>
+
+            <!--<StackPanel Grid.Row="1" Margin="1,0,0,0" Background="{StaticResource white0Brush}">
+                <Button Margin="0,10" Height="40" Width="200" Content="버튼 초기" Command="{Binding CmdGetWorkList}"/>
+                <Button Margin="0,10" Height="40" Width="200" Content="신규 등록" Command="{Binding CmdGetWorkList}"/>
+                <Button Margin="0,10" Height="40" Width="200" Content="수정 저장" Command="{Binding CmdGetWorkList}"/>
+            </StackPanel>
+            <Grid Grid.Row="2" Margin="1,0,0,0" Background="{StaticResource white0Brush}">
+                <Button Height="100" Width="200" Click="Button_Click"/>
+            </Grid>-->
+        </Grid>
+
+
+
+    </Grid>
+</Page>

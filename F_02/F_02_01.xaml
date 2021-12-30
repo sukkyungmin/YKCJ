@@ -1,0 +1,559 @@
+﻿<Page xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml" 
+      x:Class="YKCJ_EngineerReport.F_02.F_02_01"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:MultiConverter ="clr-namespace:YKCJViewModel.Common;assembly=YKCJViewModel"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:YKCJ_EngineerReport.F_02"
+      mc:Ignorable="d" 
+      d:DesignHeight="760" d:DesignWidth="1350"
+      Title="F_02_01">
+
+    <Page.Resources>
+
+
+        <MultiConverter:MultiValueEqualityConverter x:Key="multiValueEqualityConverter"/>
+        <MultiConverter:CommandMultiButtonObj x:Key="CmMtObj"/>
+
+        <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource {x:Type GridViewColumnHeader}}">
+            <Setter Property="TextBlock.Foreground" Value="#FFA8A5A5"/>
+            <Setter Property="TextBlock.FontSize" Value="12"/>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <!--<RowDefinition Height="40"/>-->
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="110"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="480"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0">
+                        <TextBlock Text="Start" VerticalAlignment="Bottom" Margin="20,0,0,5" FontSize="16" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                        <DatePicker SelectedDate="{Binding Stime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" Height="30" FontSize="16" Margin="10,0,0,0"  VerticalAlignment="Bottom"/>
+
+                        <TextBlock Text="End" VerticalAlignment="Bottom" Margin="20,0,0,5" FontSize="16" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                        <DatePicker SelectedDate="{Binding Etime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" Height="30" FontSize="16" Margin="10,0,0,0" VerticalAlignment="Bottom"/>
+
+                        <!--<TextBox Width="120" Margin="60,0,0,0" Height="42" VerticalAlignment="Bottom" materialDesign:HintAssist.Hint="Name Filter" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" 
+                                 Foreground="#2D2D2D" FontSize="16" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Text="{Binding Path=Namefilter , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="10"
+                                 />-->
+                        <materialDesign:PackIcon  Height="18" Width="18" Kind="BookClockOutline" Foreground="#FFF56C6C"  Margin="40,20,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        <TextBlock  Text="{Binding Searchtime}" VerticalAlignment="Center" Margin="10,20,0,0" FontSize="12" Foreground="#FFF56C6C" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+
+                        <ComboBox ItemsSource="{Binding WhereshiftList}" Margin="10,0,0,16"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Filtershift, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="Shift(조)"
+                              Width="100">
+                        </ComboBox>
+
+                        <!--materialDesign:TextFieldAssist.SuffixText="조"-->
+
+                        <ComboBox ItemsSource="{Binding Machinelist}" Margin="20,0,0,16"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Filtermachine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="Machine"
+                              Width="80">
+                        </ComboBox>
+
+                        <ComboBox ItemsSource="{Binding ClassList}" Margin="20,0,0,16"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Filterclass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="Class"
+                              Width="110">
+                        </ComboBox>
+
+                        <ComboBox ItemsSource="{Binding Modulepart1list}" Margin="20,0,0,16"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Filterpart1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="Module Part1"
+                              Width="140">
+                        </ComboBox>
+
+                        <ComboBox ItemsSource="{Binding FilterModulepart2list}" Margin="20,0,0,16"
+                              DisplayMemberPath="Name" SelectedValuePath="Name" SelectedValue="{Binding Filterpart2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="Module Part2"
+                              materialDesign:HintAssist.HelperText="Select one Part1"
+                              Width="140">
+                        </ComboBox>
+
+                        <TextBox  Margin="20,0,0,16"
+                              Text="{Binding Path=Filtertext , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource SecondaryHueMidBrush}"
+                              materialDesign:ColorZoneAssist.Mode="Inverted"
+                              materialDesign:HintAssist.Hint="Text Filter"
+                              Width="180">
+                        </TextBox>
+
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+
+                    <Button x:Name="_BtSearch" Height="35" Width="120" Content="검색" Grid.Column="1" FontWeight="Bold"  Margin="0,0,30,0"
+                        VerticalAlignment="Center"  TextOptions.TextFormattingMode="Ideal" Click="SearchButton_Click"/>
+
+                    <Button  Height="35" Width="120" Content="레포트"  FontWeight="Bold" Click="ViewerReportButton_Click"
+                         TextOptions.TextFormattingMode="Ideal" x:Name="_reportpopup" Margin="0,0,30,0" />
+
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10,0,0,0">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Rowdetailsvisibilitymode}" Value="true">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+
+                <Button  Height="24" Width="80" Content="All Open"  FontWeight="Bold" Click="RowDetailsVisibleButton_Click" FontSize="10"
+                         TextOptions.TextFormattingMode="Ideal" Margin="0,0,0,0" />
+
+                <Button  Height="24" Width="80" Content="All Close"  FontWeight="Bold" Click="RowDetailsCollapsedButton_Click" FontSize="10"
+                         TextOptions.TextFormattingMode="Ideal" Margin="20,0,0,0" />
+            </StackPanel>
+
+
+            <Grid Grid.Row="2">
+                <c1:C1FlexGrid ItemsSource="{Binding WorkList}"    x:Name="_c1flexgrid"                            
+                               AutoGenerateColumns="False"
+                               GridLinesVisibility="Horizontal"
+                               GridLinesBrush="LightGray"
+                               Background="White"
+                               RowBackground="White"
+			                   AlternatingRowBackground="White"
+			                   GroupRowBackground="White"
+                               SelectionBackground="White"
+                               MinRowHeight="30"
+                               SelectionMode="Row"
+                               ColumnHeaderForeground="Gray"
+                               CursorBackground="White"
+                               AllowAddNew="False" AllowResizing="None"
+                               
+                               AllowDrop="True"
+                               >
+                    <c1:C1FlexGrid.Columns>
+                        <c1:Column HeaderHorizontalAlignment="Center" Binding="{Binding Path=Number}" HorizontalAlignment="Center" VerticalAlignment="Center"  IsReadOnly="true" Width="70"/>
+                        <c1:Column HeaderHorizontalAlignment="Center" Binding="{Binding Path=Name}" HorizontalAlignment="Center" VerticalAlignment="Center"  IsReadOnly="true" MinWidth="10"/>
+                        <c1:Column HeaderHorizontalAlignment="Center" Binding="{Binding Path=Shift}" HorizontalAlignment="Center" VerticalAlignment="Center"  IsReadOnly="true" Width="70"/>
+                        <c1:Column HeaderHorizontalAlignment="Center" Header="Date" HorizontalAlignment="Center" VerticalAlignment="Center"  IsReadOnly="true" Width="120">
+                            <c1:Column.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Height="18" Width="18" Kind="ClockCheckOutline" Foreground="#FF9E9C9C"/>
+                                        <TextBlock Text="{Binding Path=EventDateTime, StringFormat=MM/dd HH:mm:ss}" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </c1:Column.CellTemplate>
+                        </c1:Column>
+                        <c1:Column HeaderHorizontalAlignment="Center" Binding="{Binding Path=Machine}" HorizontalAlignment="Center" VerticalAlignment="Center"  IsReadOnly="true" Width="70"/>
+                        <c1:Column HeaderHorizontalAlignment="Center" Binding="{Binding Path=Class}" HorizontalAlignment="Left" VerticalAlignment="Center"  IsReadOnly="true" MinWidth="30" Width="0.3*"/>
+                        <c1:Column HeaderHorizontalAlignment="Center" Binding="{Binding Path=Part1}" HorizontalAlignment="Left" VerticalAlignment="Center"  IsReadOnly="true" MinWidth="30" Width="0.5*"/>
+                        <c1:Column HeaderHorizontalAlignment="Center" Binding="{Binding Path=Part2}" HorizontalAlignment="Left" VerticalAlignment="Center"  IsReadOnly="true" MinWidth="30" Width="0.5*"/>
+                        <c1:Column HeaderHorizontalAlignment="Center" Header="Check(분)" Binding="{Binding Path=CheckTime}" HorizontalAlignment="Center" VerticalAlignment="Center"  IsReadOnly="true" MinWidth="10"/>
+                        <c1:Column HeaderHorizontalAlignment="Center" Header="Delay(분)" Binding="{Binding Path=DelayTime}" HorizontalAlignment="Center" VerticalAlignment="Center"  IsReadOnly="true" MinWidth="10"/>
+                        <c1:Column Header="삭제" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="40" HeaderHorizontalAlignment="Center">
+                            <c1:Column.CellTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding Path=DataContext.CmdWorkListDelete, 
+                                                           RelativeSource=
+                                                           {RelativeSource FindAncestor, 
+                                                           AncestorType={x:Type Grid}}}" Width="60" Content="Delete">
+                                        <Button.CommandParameter>
+                                            <MultiBinding Converter="{StaticResource CmMtObj}">
+                                                <Binding ElementName="_BtSearch" />
+                                                <Binding Path="Idx"/>
+                                            </MultiBinding>
+                                        </Button.CommandParameter>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                <Setter Property="Background" Value="#FF2196F3"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <Setter Property="Height" Value="30"/>
+                                                <Setter Property="Margin" Value="4"/>
+
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border Name="Border"
+                                                        Background="{TemplateBinding Background}"
+                                                        CornerRadius="8"
+                                                        >
+
+                                                                <ContentPresenter Name="Content"
+                                                          Content="{TemplateBinding Content}" 
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                          TextBlock.FontFamily="{TemplateBinding FontFamily}" 
+                                                          TextBlock.FontSize="{TemplateBinding FontSize}" />
+                                                            </Border>
+
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter TargetName="Border" Property="Background" Value="#E8427A" />
+                                                                    <!--<Setter Property="Opacity" Value="1" />-->
+                                                                    <!--<Setter Property="Foreground" Value="White"/>-->
+                                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                                </Trigger>
+
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <DataTrigger Value="True">
+                                                        <DataTrigger.Binding>
+                                                            <MultiBinding Converter="{StaticResource multiValueEqualityConverter}">
+                                                                <Binding Path="Name"/>
+                                                                <Binding ElementName="_textusername" Path="Text"/>
+                                                            </MultiBinding>
+                                                        </DataTrigger.Binding>
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </DataTemplate>
+                            </c1:Column.CellTemplate>
+                        </c1:Column>
+                        <!--<c1:Column Header="수정" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="40" HeaderHorizontalAlignment="Center">
+                            <c1:Column.CellTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding Path=DataContext.CmdGetWorkListModify, 
+                                                           RelativeSource=
+                                                           {RelativeSource FindAncestor, 
+                                                           AncestorType={x:Type Grid}}}" 
+                                            Click="ModifyReportButton_Click"
+                                            Width="60" Content="Modify">
+                                        <Button.CommandParameter>
+                                            <MultiBinding Converter="{StaticResource CmMtObj}">
+                                                <Binding RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="Idx"/>
+                                            </MultiBinding>
+                                        </Button.CommandParameter>
+                                        --><!--<Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="3"/>
+                                            </Style>
+                                        </Button.Resources>--><!--
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                <Setter Property="Background" Value="#FF2196F3"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <Setter Property="Height" Value="30"/>
+                                                <Setter Property="Margin" Value="4"/>
+
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border Name="Border"
+                                                        Background="{TemplateBinding Background}"
+                                                        CornerRadius="8"
+                                                        >
+
+                                                                <ContentPresenter Name="Content"
+                                                          Content="{TemplateBinding Content}" 
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                          TextBlock.FontFamily="{TemplateBinding FontFamily}" 
+                                                          TextBlock.FontSize="{TemplateBinding FontSize}" />
+                                                            </Border>
+
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter TargetName="Border" Property="Background" Value="#E8427A" />
+                                                                    --><!--<Setter Property="Opacity" Value="1" />-->
+                                                                    <!--<Setter Property="Foreground" Value="White"/>--><!--
+                                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                                </Trigger>
+
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <DataTrigger Value="True">
+                                                        <DataTrigger.Binding>
+                                                            <MultiBinding Converter="{StaticResource multiValueEqualityConverter}">
+                                                                <Binding Path="Name"/>
+                                                                <Binding ElementName="_textusername" Path="Text"/>
+                                                            </MultiBinding>
+                                                        </DataTrigger.Binding>
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+
+                                    </Button>
+                                </DataTemplate>
+                            </c1:Column.CellTemplate>
+                        </c1:Column>-->
+                        <c1:Column Header="보기" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="40" HeaderHorizontalAlignment="Center">
+                            <c1:Column.CellTemplate>
+                                <DataTemplate>
+                                    <Button Command="{Binding Path=DataContext.CmdGetViewWorkList,  
+                                                           RelativeSource=
+                                                           {RelativeSource FindAncestor, 
+                                                           AncestorType={x:Type c1:C1FlexGrid}}}" 
+                                            Click="ViewReportButton_Click"
+                                            Width="60" Content="View">
+                                        <Button.CommandParameter>
+                                            <MultiBinding Converter="{StaticResource CmMtObj}">
+                                                <!--<Binding ElementName="_viewpopup"/>-->
+                                                <Binding RelativeSource="{RelativeSource Self}"/>
+                                                <Binding Path="Idx"/>
+                                            </MultiBinding>
+                                        </Button.CommandParameter>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Setter Property="Background" Value="#FF2196F3"/>
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <Setter Property="Height" Value="30"/>
+                                                <Setter Property="Margin" Value="4"/>
+
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border Name="Border"
+                                                        Background="{TemplateBinding Background}"
+                                                        CornerRadius="8"
+                                                        >
+
+                                                                <ContentPresenter Name="Content"
+                                                          Content="{TemplateBinding Content}" 
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                          TextBlock.FontFamily="{TemplateBinding FontFamily}" 
+                                                          TextBlock.FontSize="{TemplateBinding FontSize}" />
+                                                            </Border>
+
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter TargetName="Border" Property="Background" Value="#E8427A" />
+                                                                    <!--<Setter Property="Opacity" Value="1" />-->
+                                                                    <!--<Setter Property="Foreground" Value="White"/>-->
+                                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                                </Trigger>
+
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                </DataTemplate>
+                            </c1:Column.CellTemplate>
+                        </c1:Column>
+                    </c1:C1FlexGrid.Columns>
+                    <c1:C1FlexGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                                <Grid Margin="3" Height="auto">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="문제점 : " Foreground="Red"/>
+                                    <Label Grid.Column="1">
+                                        <TextBlock Text="{Binding Path=Title}" TextWrapping="Wrap"/>
+                                    </Label>
+                                    <Label Content="조치사항 :" Grid.Row="1" Foreground="Red"/>
+                                    <Label Grid.Row="1" Grid.Column="1">
+                                        <TextBlock Text="{Binding Path=Detail}" TextWrapping="Wrap"/>
+                                    </Label>
+                                </Grid>
+                            </ScrollViewer>
+                        </DataTemplate>
+                    </c1:C1FlexGrid.RowDetailsTemplate>
+                </c1:C1FlexGrid>
+            </Grid>
+
+
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Margin="100,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">
+                <Button Command="{Binding CmdSetPageNumberChange}" CommandParameter="1">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Label Content="[처음 페이지]" FontSize="10" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Setter Property="Foreground" Value="{StaticResource F_01_01_PageNumber0Brush}"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{StaticResource black0Brush}"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding PagingStaEndmoed}" Value="2">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Command="{Binding CmdSetPageNumberChange}" CommandParameter="2">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Label Content="[이전 페이지]" FontSize="10" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Setter Property="Foreground" Value="{StaticResource F_01_01_PageNumber0Brush}"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{StaticResource black0Brush}"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding PagingStaEndmoed}" Value="1">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding PagingStaEndmoed}" Value="2">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <WrapPanel x:Name="_Wrap_pagingnumber" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                <Button Command="{Binding CmdSetPageNumberChange}" CommandParameter="3">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Label Content="[다음 페이지]" FontSize="10" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Setter Property="Foreground" Value="{StaticResource F_01_01_PageNumber0Brush}"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{StaticResource black0Brush}"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding PagingStaEndmoed}" Value="1">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding PagingStaEndmoed}" Value="2">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Command="{Binding CmdSetPageNumberChange}" CommandParameter="4">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Label Content="[마지막 페이지]" FontSize="10" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Setter Property="Foreground" Value="{StaticResource F_01_01_PageNumber0Brush}"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Foreground" Value="{StaticResource black0Brush}"/>
+                                            </Trigger>
+                                            <DataTrigger Binding="{Binding PagingStaEndmoed}" Value="2">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </WrapPanel>
+            <WrapPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <WrapPanel.Style>
+                    <Style TargetType="WrapPanel">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Totalpage}" Value="0">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </WrapPanel.Style>
+                <TextBlock Text="{Binding Pagenumber , StringFormat=Page {0}}" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Totalpage , StringFormat=/{0}}" VerticalAlignment="Center"/>
+            </WrapPanel>
+        </Grid>
+        <!--<Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="DataChange" Command="{Binding CmdSetTextChange}" Width="200" />
+            <TextBlock Text="{Binding teststring}" VerticalAlignment="Center" Grid.Column="1" FontSize="18"/> 
+        </Grid>-->
+    </Grid>
+</Page>

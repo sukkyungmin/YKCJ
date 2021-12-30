@@ -1,0 +1,149 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--#region Common -->
+
+        <!--#region Common Color -->
+
+    <Color x:Key="white0Color">#FFFFFF</Color>
+    <Color x:Key="black0Color">#252526</Color>
+    <Color x:Key="black1Color">#565656</Color>
+    <Color x:Key="Green0Color">#00FF36</Color>
+    <Color x:Key="Gray0Color">#E0E0E0</Color>
+    <Color x:Key="Gray1Color">#7F7E7E</Color>
+    <Color x:Key="Red0Color">#FF0000</Color>
+    <Color x:Key="Blue0Color">#0025FF</Color>
+
+    <SolidColorBrush
+            x:Key="white0Brush"
+            Color="{StaticResource white0Color}"/>
+    <SolidColorBrush
+            x:Key="black0Brush"
+            Color="{StaticResource black0Color}"/>
+    <SolidColorBrush
+            x:Key="black1Brush"
+            Color="{StaticResource black1Color}"/>
+    <SolidColorBrush
+            x:Key="Green0Brush"
+            Color="{StaticResource Green0Color}"/>
+    <SolidColorBrush
+            x:Key="Gray0Brush"
+            Color="{StaticResource Gray0Color}"/>
+    <SolidColorBrush
+            x:Key="Gray1Brush"
+            Color="{StaticResource Gray1Color}"/>
+    <SolidColorBrush
+            x:Key="Red0Brush"
+            Color="{StaticResource Red0Color}"/>
+    <SolidColorBrush
+            x:Key="Blue0Brush"
+            Color="{StaticResource Blue0Color}"/>
+
+
+
+    <!--#endregion-->
+    
+    <!--#endregion-->
+
+    <!--#region F_01-->
+
+    <!--#region F_01_01 Color -->
+
+    <Color x:Key="F_01_01_PageNumber0Color">#4FA1D3</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_PageNumber0Brush"
+            Color="{StaticResource F_01_01_PageNumber0Color}"/>
+
+    <Color x:Key="F_01_01_Red0Color">#FF1A26</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_Red0Brush"
+            Color="{StaticResource F_01_01_Red0Color}"/>
+
+    <Color x:Key="F_01_01_Blue0Color">#2737FF</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_Blue0Brush"
+            Color="{StaticResource F_01_01_Blue0Color}"/>
+
+    <Color x:Key="F_01_01_Icon0Color">#406CB4</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_Icon0Brush"
+            Color="{StaticResource F_01_01_Icon0Color}"/>
+
+    <Color x:Key="F_01_01_IconText0Color">#434444</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_IconText0Brush"
+            Color="{StaticResource F_01_01_IconText0Color}"/>
+
+    <Color x:Key="F_01_01_DataTextColor">#FFFFFF</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_DataTextBrush"
+            Color="{StaticResource F_01_01_DataTextColor}"/>
+
+    <Color x:Key="F_01_01_DataTextBGColor">#6666C6</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_DataTextBGBrush"
+            Color="{StaticResource F_01_01_DataTextBGColor}"/>
+
+    <Color x:Key="F_01_01_ExcelColor">#217045</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_ExcelBrush"
+            Color="{StaticResource F_01_01_ExcelColor}"/>
+
+    <Color x:Key="F_01_01_PowerPointColor">#AF462A</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_PowerPointBrush"
+            Color="{StaticResource F_01_01_PowerPointColor}"/>
+
+    <Color x:Key="F_01_01_PDFColor">#BA1B27</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_PDFBrush"
+            Color="{StaticResource F_01_01_PDFColor}"/>
+
+    <Color x:Key="F_01_01_WordColor">#2E9BD5</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_WordBrush"
+            Color="{StaticResource F_01_01_WordColor}"/>
+
+    <Color x:Key="F_01_01_NxPrMouseOverColor">#666666</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_NxPrMouseOverBrush"
+            Color="{StaticResource F_01_01_NxPrMouseOverColor}"/>
+
+    <Color x:Key="F_01_01_ReportModeColor">#C7EEFF</Color>
+
+    <SolidColorBrush
+            x:Key="F_01_01_ReportModeBrush"
+            Color="{StaticResource F_01_01_ReportModeColor}"/>
+
+
+    <!--#endregion-->
+
+
+    <!--#region F_08-->
+
+        <!--#region F_08_01 Color -->
+
+        <Color x:Key="F_08_01_Scrollbar0Color">#FFFFFF</Color>
+
+        <SolidColorBrush
+            x:Key="F_08_01_Scrollbar0Brush"
+            Color="{StaticResource F_08_01_Scrollbar0Color}"/>
+
+    <!--#endregion-->
+
+    <!--#endregion-->
+
+
+</ResourceDictionary>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="YKCJ_EngineerReport.F_02.Wds.F_02_01_ReportPopup"       
+        xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YKCJ_EngineerReport.F_02.Wds"
+        mc:Ignorable="d"
+        Title="F_01_01_ReportPopup" Height="900" Width="1400" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <c1:C1FlexViewer Grid.Row="1"
+            x:Name="fv"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            ZoomMode="PageWidth"
+            OpenExportedFile="True"                           
+        />
+    </Grid>
+</Window>

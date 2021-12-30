@@ -1,0 +1,88 @@
+﻿<Window x:Class="YKCJ_EngineerReport.F_07.Wds.F_07_01_ModifyPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YKCJ_EngineerReport.F_07.Wds"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="F_07_01_SavePopup" Height="300" Width="400" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
+        WindowStyle="None" ResizeMode="CanResize" AllowsTransparency="True" x:Name="_F07_ModifyPopupWindow">
+
+    <Window.Resources>
+
+        <!--<Style x:Key="Parttext" TargetType="TextBlock">
+            <Setter Property="Text" Value="{Binding Path=Text, RelativeSource={RelativeSource Self}}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Text, RelativeSource={RelativeSource Self}}" Value="1">
+                    <Setter Property="Text" Value="안녕"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>-->
+        
+    </Window.Resources>
+
+    <Border BorderBrush="Black" BorderThickness="0.5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <Grid Background="#FF3580BF" Grid.Row="0" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+
+                <Button Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="26" Height="26" Background="{x:Null}" BorderBrush="{x:Null}" Click="WindowMaximize_Click"
+                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0">
+                    <materialDesign:PackIcon Kind="WindowMaximize" Width="26" Height="26" Foreground="White"/>
+                </Button>
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <materialDesign:PackIcon  Width="20" Height="20" VerticalAlignment="Center" Margin="12,0,0,0" Kind="ContentSaveOutline" Foreground="White"/>
+                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="14" Foreground="White" Text="PART MODIFY SAVE"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Margin="20">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon  Width="25" Height="25" VerticalAlignment="Center">
+                            <materialDesign:PackIcon.Style>
+                                <Style TargetType="materialDesign:PackIcon">
+                                    <Setter Property="Kind" Value="SourceRepositoryMultiple"/>
+                                    <Setter Property="Foreground" Value="Gray"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Selectmodifypartname}" Value="MACHINE">
+                                            <Setter Property="Kind" Value="CogTransfer"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Selectmodifypartname}" Value="CLASS">
+                                            <Setter Property="Kind" Value="HumanQueue"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Selectmodifypartname}" Value="PART1">
+                                            <Setter Property="Kind" Value="SourceRepository"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Selectmodifypartname}" Value="PART2">
+                                            <Setter Property="Kind" Value="SourceRepositoryMultiple"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </materialDesign:PackIcon.Style>
+                        </materialDesign:PackIcon>
+
+                        <TextBlock Margin="14" VerticalAlignment="Center" FontSize="20" Foreground="Gray" Text="{Binding Modifyidx , StringFormat=ITEM IDENTITY KEY : {0}}"/>
+                    </StackPanel>
+                    <TextBox materialDesign:HintAssist.Hint="{Binding Selectmodifypartname}" Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontFamily="Champagne &amp; Limousines" 
+                         Foreground="#2D2D2D" FontSize="30"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="360"
+                         Text="{Binding Modifyname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+
+                    </TextBox>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="0,0,0,20">
+
+                <Button Height="50" Width="140" Content="Save" Margin="0,0,20,0" Command="{Binding CmdSetPartListModifyUpdate}" CommandParameter="{Binding ElementName=_F07_ModifyPopupWindow}"/>
+                <Button Height="50" Width="140" Content="Close" Margin="20,0,0,0" Command="{Binding CmdWindowClose}" CommandParameter="{Binding ElementName=_F07_ModifyPopupWindow}"/>
+
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</Window>

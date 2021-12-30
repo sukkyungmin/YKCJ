@@ -1,0 +1,341 @@
+﻿<Window x:Class="YKCJ_EngineerReport.F_02.Wds.F_02_01_ViewPopup"
+        xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:CmMt ="clr-namespace:YKCJViewModel.Common;assembly=YKCJViewModel"
+        xmlns:local="clr-namespace:YKCJ_EngineerReport.F_02.Wds"
+        mc:Ignorable="d"
+        Title="F_02_01_SavePopup" Height="960" Width="1000" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
+        WindowStyle="None" ResizeMode="CanResize" AllowsTransparency="True" x:Name="_ViewPopupWindow">
+    <Window.Resources>
+
+        <CmMt:CommandRichTextBoxObj x:Key="CmMtObj"/>
+        <CmMt:ImageValueVisible x:Key="ImgVb"/>
+
+        <!--콤보박스-->
+
+        <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="{x:Type ToggleButton}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Border
+                  x:Name="Border" 
+                  Grid.ColumnSpan="2"
+                  CornerRadius="0"
+                  Background="#FF3F3F3F"
+                  BorderBrush="#FF97A0A5"
+                  BorderThickness="1" />
+                <Border 
+                  Grid.Column="0"
+                  CornerRadius="0" 
+                  Margin="1" 
+                  Background="#FF3F3F3F" 
+                  BorderBrush="#FF97A0A5"
+                  BorderThickness="0,0,1,0" />
+                <Path 
+                  x:Name="Arrow"
+                  Grid.Column="1"     
+                  Fill="White"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
+                />
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                    <Setter TargetName="Border" Property="Background" Value="#808080" />
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="true">
+                    <Setter TargetName="Border" Property="Background" Value="#E0E0E0" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="Border" Property="Background" Value="#EEEEEE" />
+                    <Setter TargetName="Border" Property="BorderBrush" Value="#AAAAAA" />
+                    <Setter Property="Foreground" Value="#888888"/>
+                    <Setter TargetName="Arrow" Property="Fill" Value="#888888" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
+            <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
+        </ControlTemplate>
+
+        <Style x:Key="LimitComboxStyle" TargetType="{x:Type ComboBox}">
+            <!--<Setter Property="SnapsToDevicePixels" Value="true"/>-->
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <!--<Setter Property="MinWidth" Value="120"/>
+            <Setter Property="MinHeight" Value="20"/>-->
+            <Setter Property="FontSize" Value="{Binding Path=FontSize, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <!--<Setter-->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ComboBox}">
+                        <Grid>
+                            <ToggleButton 
+                            Name="ToggleButton" 
+                            Template="{StaticResource ComboBoxToggleButton}" 
+                            Grid.Column="2" 
+                            Focusable="false"
+                            IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"
+                            ClickMode="Press">
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  Content="{TemplateBinding SelectionBoxItem}"
+                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                            Margin="7,3,23,3"                            
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left" />
+                            <TextBox x:Name="PART_EditableTextBox"
+                            Style="{x:Null}" 
+                            Template="{StaticResource ComboBoxTextBox}" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" 
+                            Margin="3,3,23,3"
+                            Focusable="True" 
+                            Background="#FF3F3F3F"
+                            Foreground="Green"
+                            Visibility="Hidden"
+                            IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup 
+                            Name="Popup"
+                            Placement="Bottom"
+                            IsOpen="{TemplateBinding IsDropDownOpen}"
+                            AllowsTransparency="True" 
+                            Focusable="False"
+                            PopupAnimation="Slide">
+
+                                <Grid Name="DropDown"
+                              SnapsToDevicePixels="True"                
+                              MinWidth="{TemplateBinding ActualWidth}"
+                              MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border 
+                                x:Name="DropDownBorder"
+                                Background="#FF3F3F3F"
+
+                                BorderThickness="1"
+                                BorderBrush="#888888"/>
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#888888"/>
+                            </Trigger>
+                            <Trigger Property="IsGrouping" Value="true">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </Trigger>
+                            <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
+                                <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="0"/>
+                                <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
+                            </Trigger>
+                            <Trigger Property="IsEditable"  Value="true">
+                                <Setter Property="IsTabStop" Value="false"/>
+                                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="SelectedItem" Value="{x:Null}">
+                                <Setter Property="SelectedIndex" Value="0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+
+        <FontFamily x:Key="MaterialDesignFont">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+
+    </Window.Resources>
+
+
+    <Border BorderBrush="Black" BorderThickness="0.5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <Grid Background="#FF3580BF" Grid.Row="0" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--<materialDesign:PackIcon Grid.Column="1" Kind="WindowMaximize" Foreground="Gray" Margin="0,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Right"
+                                     Height="26" Width="26"/>-->
+                <Button Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="26" Height="26" Background="{x:Null}" BorderBrush="{x:Null}" Click="WindowMaximize_Click"
+                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0">
+                    <materialDesign:PackIcon Kind="WindowMaximize" Width="26" Height="26" Foreground="White"/>
+                </Button>
+                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                    <materialDesign:PackIcon  Width="20" Height="20" VerticalAlignment="Center" Margin="12,0,0,0">
+                        <materialDesign:PackIcon.Style>
+                            <Style TargetType="materialDesign:PackIcon">
+                                <Setter Property="Kind" Value="ContentSaveOutline"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </materialDesign:PackIcon.Style>
+                    </materialDesign:PackIcon>
+
+                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="14">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Text" Value="WORK LIST VIEW POPUP"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="0"/>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+
+                        <TextBlock Text="{Binding Viewworklist.Rows[0][EventDateTime], StringFormat=Date : {0:yyyy/MM/dd HH:mm:ss}}" VerticalAlignment="Center" Margin="20,5,0,0" FontSize="16" Foreground="#FF494747" FontFamily="{StaticResource MaterialDesignFont}"/>
+
+                        <TextBlock Text="{Binding Viewworklist.Rows[0][DelayTime], StringFormat=Delay : {0}(분)}" VerticalAlignment="Center" Margin="50,5,0,0" FontSize="16" Foreground="{StaticResource F_01_01_Blue0Brush}" FontFamily="{StaticResource MaterialDesignFont}"/>
+
+                        <TextBlock Text="{Binding Viewworklist.Rows[0][CheckTime], StringFormat=Check : {0}(분)}" VerticalAlignment="Center" Margin="30,5,0,0" FontSize="16" Foreground="{StaticResource F_01_01_Red0Brush}" FontFamily="{StaticResource MaterialDesignFont}"/>
+
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1">
+                        <TextBlock Text="{Binding Viewworklist.Rows[0][UserName], StringFormat=작성자 : {0}}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,20,0" FontSize="16" Foreground="#FF494747" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid  Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140"/>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Shift" VerticalAlignment="Top" Margin="22,3,0,0" FontSize="12" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <TextBlock Grid.Column="0" Text="{Binding Viewworklist.Rows[0][Shift]}" VerticalAlignment="Top" Margin="22,20,0,0" FontSize="16" Foreground="#FF494747" FontFamily="{StaticResource MaterialDesignFont}"/>
+
+                    <TextBlock Grid.Column="1" Text="Machine" VerticalAlignment="Top" Margin="22,3,0,0" FontSize="12" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <TextBlock Grid.Column="1" Text="{Binding Viewworklist.Rows[0][Machine]}" VerticalAlignment="Top" Margin="22,20,0,0" FontSize="16" Foreground="#FF494747" FontFamily="{StaticResource MaterialDesignFont}"/>
+
+
+                    <TextBlock Grid.Column="2" Text="Class" VerticalAlignment="Top" Margin="22,8,0,0" FontSize="12" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <TextBlock Grid.Column="2" Text="{Binding Viewworklist.Rows[0][Class]}" VerticalAlignment="Top" Margin="22,20,0,0" FontSize="16" Foreground="#FF494747" FontFamily="{StaticResource MaterialDesignFont}"/>
+
+
+                    <TextBlock Grid.Column="3" Text="Part1" VerticalAlignment="Top" Margin="22,8,0,0" FontSize="12" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <TextBlock Grid.Column="3" Text="{Binding Viewworklist.Rows[0][Part1]}" VerticalAlignment="Top" Margin="22,20,0,0" FontSize="16" Foreground="#FF494747" FontFamily="{StaticResource MaterialDesignFont}"/>
+
+                    <TextBlock Grid.Column="4" Text="Part2" VerticalAlignment="Top" Margin="22,8,0,0" FontSize="12" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <TextBlock Grid.Column="4" Text="{Binding Viewworklist.Rows[0][PArt2]}" VerticalAlignment="Top" Margin="22,20,0,0" FontSize="16" Foreground="#FF494747" FontFamily="{StaticResource MaterialDesignFont}"/>
+
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                    <TextBlock Grid.Column="3" Text="Title" VerticalAlignment="Center" Margin="8,0,0,0" FontSize="16" Foreground="Gray" FontFamily="{StaticResource MaterialDesignFont}"/>
+                    <Grid Width="940" Margin="8" Background="#FF7E7B7B">
+                        <Grid Background="White" Margin="0.0,0.4,0.0,0.4">
+                            <TextBlock Text="{Binding Viewworklist.Rows[0][Title]}" VerticalAlignment="Center" Margin="2" FontSize="16" Foreground="Gray" 
+                                       TextWrapping="Wrap" FontFamily="{StaticResource MaterialDesignFont}"/>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+                <Grid Grid.Row="4" Background="#FFCBCBCB">
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <c1:C1RichTextBox x:Name="_C1rtb" Grid.Row="1" BorderThickness="0" Height="630" Html="{Binding ViewDetailhtml}" IsReadOnly="True"
+                                          Focusable="False"/>
+
+                    </StackPanel>
+                </Grid>
+
+
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.RowSpan="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center">
+                        <TextBlock Margin="8,0,0,0"  VerticalAlignment="Center" FontSize="18" Foreground="{StaticResource black0Brush}" FontFamily="{StaticResource MaterialDesignFont}"
+                                   Text="File : "/>
+                        <TextBlock Margin="0,0,0,0"  VerticalAlignment="Center" FontSize="18" Foreground="{StaticResource F_01_01_Red0Brush}" FontFamily="{StaticResource MaterialDesignFont}"
+                                   Text="{Binding Viewworklist.Rows[0][SaveFileName]}"/>
+                        <TextBlock Margin="10,0,0,0"  VerticalAlignment="Center" FontSize="18" Foreground="{StaticResource black0Brush}" FontFamily="{StaticResource MaterialDesignFont}"
+                                   Text="Size : "/>
+                        <TextBlock Margin="0,0,0,0"  VerticalAlignment="Center" FontSize="18" Foreground="{StaticResource F_01_01_Red0Brush}" FontFamily="{StaticResource MaterialDesignFont}"
+                                   Text="{Binding Viewworklist.Rows[0][FileSize]}"/>
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1" Margin="8,0,0,0" Text="{Binding Savefileprogress}" VerticalAlignment="Center" FontSize="18" Foreground="{StaticResource F_01_01_Red0Brush}" FontFamily="{StaticResource MaterialDesignFont}"/>
+                </Grid>
+
+                <!--<Image Width="150" Height="150" Stretch="Fill"  Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Viewworklist.Rows[0][SaveFileDirectory]}"
+                       Visibility="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged , Path= Viewworklist.Rows[0][Fileform], Converter={StaticResource ImgVb}}"/>-->
+                <Image Width="200" Height="120" Stretch="Fill"  Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Viewworklist.Rows[0][SaveFileDirectory]}"
+                       Visibility="{Binding Mode=OneWay, UpdateSourceTrigger=PropertyChanged , Path=Viewworklist.Rows[0][Fileform] , Converter={StaticResource ImgVb}}"
+                       />
+
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center"  Grid.Column="2" Grid.RowSpan="2" >
+                    <Button Margin="10" Height="36" Width="160" Content="File Open"  Command="{Binding CmdGetFileOpen}" CommandParameter="{Binding Viewworklist.Rows[0][SaveFileDirectory]}"
+                            IsEnabled="{Binding Downloadnotfile}"/>
+                    <Button Margin="10" Height="36" Width="160" Content="File Download"  Command="{Binding CmdGetFileDownload}" CommandParameter="{Binding Viewworklist.Rows[0][SaveFileDirectory]}"
+                            IsEnabled="{Binding Downloadnotfile}"/>
+                </StackPanel>
+
+
+            </Grid>
+
+
+
+            <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center">
+
+                <Button Height="50" Width="200" Content="Close"  Command="{Binding CmdWindowClear}" CommandParameter="{Binding ElementName=_ViewPopupWindow}" IsEnabled="{Binding Downloadlock}"/>
+
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</Window>

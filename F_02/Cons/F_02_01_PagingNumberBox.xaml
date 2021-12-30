@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="YKCJ_EngineerReport.F_02.Cons.F_02_01_PagingNumberBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Height="30" Width="40">
+    <Grid Width="40" Height="30" MouseDown="Grid_MouseDown">
+        <TextBlock x:Name="_TbPageNo" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="TextDecorations" Value="None"/>
+                    <Setter Property="Foreground" Value="{StaticResource F_01_01_PageNumber0Brush}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=IsMouseOver}" Value="true">
+                            <Setter Property="TextDecorations" Value="Underline"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName= _LbHidden, Path=Content}" Value="1">
+                            <Setter Property="Foreground" Value="{StaticResource black0Brush}"/>
+                            <Setter Property="TextDecorations" Value="Underline"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <Label x:Name="_LbHidden" Visibility="Hidden" Content="0"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{444E6F66-6257-4F0A-81BA-8B064240DDE9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>YKCJViewModel</RootNamespace>
+    <AssemblyName>YKCJViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <EmbeddedResource Include="YKCJViewModel.gclicx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="C1.WPF.4.5.2, Version=4.5.20211.741, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce, processorArchitecture=MSIL">
+      <HintPath>..\YKCJ_EngineerReport\packages\C1.Xaml.WPF.4.5.20211.741\lib\net452\C1.WPF.4.5.2.dll</HintPath>
+    </Reference>
+    <Reference Include="C1.WPF.RichTextBox.4.5.2, Version=4.5.20211.741, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce, processorArchitecture=MSIL">
+      <HintPath>..\YKCJ_EngineerReport\packages\C1.Xaml.WPF.RichTextBox.4.5.20211.741\lib\net452\C1.WPF.RichTextBox.4.5.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML">
+      <HintPath>..\..\..\DMSG_combine_Program\SRC\DMSGalaxy.Main\DMSGalaxy.Main\bin\Debug\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\DMSG_combine_Program\SRC\DMSGalaxy.Main\DMSGalaxy.Main\bin\Debug\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa">
+      <HintPath>..\..\..\DMSG_combine_Program\SRC\DMSGalaxy.Main\DMSGalaxy.ViewModel\bin\Debug\itextsharp.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\YKCJ_EngineerReport\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\YKCJ_EngineerReport\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0a79e46d-4de0-4e09-bc86-cbc0f5f61cd6}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBConnection\DBConnection.csproj">
+      <Project>{5b8260aa-3052-4255-ab61-5abfc508b454}</Project>
+      <Name>DBConnection</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonCons\MenuModel.cs" />
+    <Compile Include="CommonCons\MenuViewModel.cs" />
+    <Compile Include="Common\CommandMultiButtonObj.cs" />
+    <Compile Include="Common\CommandMultiObj.cs" />
+    <Compile Include="Common\CommandMultitoStringObj.cs" />
+    <Compile Include="Common\CommandMultiWinIntObj.cs" />
+    <Compile Include="Common\CommandRichTextBoxObj.cs" />
+    <Compile Include="Common\F01_RichTextBoxObj.cs" />
+    <Compile Include="Common\F_01_SingleValueButConverter.cs" />
+    <Compile Include="Common\F_01_SingleValueImageConverter.cs" />
+    <Compile Include="Common\ImageValueVisible.cs" />
+    <Compile Include="Common\MultiValueEqualityConverter.cs" />
+    <Compile Include="Common\ObservableObject.cs" />
+    <Compile Include="Common\PropertySupport.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Common\SingleValueNegativeConverter.cs" />
+    <Compile Include="Common\TextValueReturnText.cs" />
+    <Compile Include="F_00\F_00_Model.cs" />
+    <Compile Include="F_00\F_00_ViewModel.cs" />
+    <Compile Include="F_01\F_01_01_Model.cs" />
+    <Compile Include="F_01\F_01_01_ViewModel.cs" />
+    <Compile Include="F_02\F_02_01_PopupModel.cs" />
+    <Compile Include="F_02\F_02_01_ViewModel.cs" />
+    <Compile Include="F_02\F_02_01_Model.cs" />
+    <Compile Include="F_07\F_07_01_Model.cs" />
+    <Compile Include="F_07\F_07_01_ViewModel.cs" />
+    <Compile Include="F_08\F_08_01_CommonModel.cs" />
+    <Compile Include="F_08\F_08_01_Model.cs" />
+    <Compile Include="F_08\F_08_01_ViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

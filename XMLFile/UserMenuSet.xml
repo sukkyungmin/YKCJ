@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Setting>
+
+  <Level1 Tile="Dashboards" Col="#2E343C"/>
+  <Level1 Tile="AppSetting" Col="#4E636B"/>
+
+  <Level2 Tile="Dashboards" Col="#2E343C"/>
+  <Level2 Tile="Report" Col="#A1A1A4"/>
+  <Level2 Tile="Analysis" Col="#686564"/>
+  <Level2 Tile="AppSetting" Col="#4E636B"/>
+
+  <Level3 Tile="Dashboards" Col="#2E343C"/>
+  <Level3 Tile="Report" Col="#A1A1A4"/>
+  <Level3 Tile="Analysis" Col="#686564"/>
+  <Level3 Tile="Communication" Col="#8B7F81"/>
+  <Level3 Tile="AppSetting" Col="#4E636B"/>
+
+  <Level4 Tile="Dashboards" Col="#2E343C"/>
+  <Level4 Tile="Report" Col="#A1A1A4"/>
+  <Level4 Tile="Analysis" Col="#686564"/>
+  <Level4 Tile="Historian" Col="#858794"/>
+  <Level4 Tile="Communication" Col="#8B7F81"/>
+  <Level4 Tile="AppSetting" Col="#4E636B"/>
+
+  <Level5 Tile="Dashboards" Col="#2E343C"/>
+  <Level5 Tile="Report" Col="#A1A1A4"/>
+  <Level5 Tile="Mill" Col="#697179"/>
+  <Level5 Tile="Analysis" Col="#686564"/>
+  <Level5 Tile="Historian" Col="#858794"/>
+  <Level5 Tile="Communication" Col="#8B7F81"/>
+  <Level5 Tile="AppSetting" Col="#4E636B"/>
+  <Level5 Tile="DataSetting" Col="#545F69"/>
+
+</Setting>
