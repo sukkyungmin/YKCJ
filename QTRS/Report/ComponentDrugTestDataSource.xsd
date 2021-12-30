@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ComponentDrugTestDataSource" targetNamespace="http://tempuri.org/ComponentDrugTestDataSource.xsd" xmlns:mstns="http://tempuri.org/ComponentDrugTestDataSource.xsd" xmlns="http://tempuri.org/ComponentDrugTestDataSource.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ComponentDrugTestDataSource" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ComponentDrugTestDataSource" msprop:Generator_UserDSName="ComponentDrugTestDataSource">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ComponentDrugTestHeaderDataSet" msprop:Generator_TableClassName="ComponentDrugTestHeaderDataSetDataTable" msprop:Generator_TableVarName="tableComponentDrugTestHeaderDataSet" msprop:Generator_RowChangedName="ComponentDrugTestHeaderDataSetRowChanged" msprop:Generator_TablePropName="ComponentDrugTestHeaderDataSet" msprop:Generator_RowDeletingName="ComponentDrugTestHeaderDataSetRowDeleting" msprop:Generator_RowChangingName="ComponentDrugTestHeaderDataSetRowChanging" msprop:Generator_RowEvHandlerName="ComponentDrugTestHeaderDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="ComponentDrugTestHeaderDataSetRowDeleted" msprop:Generator_RowClassName="ComponentDrugTestHeaderDataSetRow" msprop:Generator_UserTableName="ComponentDrugTestHeaderDataSet" msprop:Generator_RowEvArgName="ComponentDrugTestHeaderDataSetRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fdaName" msprop:Generator_ColumnVarNameInTable="columnfdaName" msprop:Generator_ColumnPropNameInRow="fdaName" msprop:Generator_ColumnPropNameInTable="fdaNameColumn" msprop:Generator_UserColumnName="fdaName" type="xs:string" minOccurs="0" />
+              <xs:element name="deliveryCompanyName" msprop:Generator_ColumnVarNameInTable="columndeliveryCompanyName" msprop:Generator_ColumnPropNameInRow="deliveryCompanyName" msprop:Generator_ColumnPropNameInTable="deliveryCompanyNameColumn" msprop:Generator_UserColumnName="deliveryCompanyName" type="xs:string" minOccurs="0" />
+              <xs:element name="purpose" msprop:Generator_ColumnVarNameInTable="columnpurpose" msprop:Generator_ColumnPropNameInRow="purpose" msprop:Generator_ColumnPropNameInTable="purposeColumn" msprop:Generator_UserColumnName="purpose" type="xs:string" minOccurs="0" />
+              <xs:element name="mainLotNo" msprop:Generator_ColumnVarNameInTable="columnmainLotNo" msprop:Generator_ColumnPropNameInRow="mainLotNo" msprop:Generator_ColumnPropNameInTable="mainLotNoColumn" msprop:Generator_UserColumnName="mainLotNo" type="xs:string" minOccurs="0" />
+              <xs:element name="testDate" msprop:Generator_ColumnVarNameInTable="columntestDate" msprop:Generator_ColumnPropNameInRow="testDate" msprop:Generator_ColumnPropNameInTable="testDateColumn" msprop:Generator_UserColumnName="testDate" type="xs:string" minOccurs="0" />
+              <xs:element name="testerName" msprop:Generator_ColumnVarNameInTable="columntesterName" msprop:Generator_ColumnPropNameInRow="testerName" msprop:Generator_ColumnPropNameInTable="testerNameColumn" msprop:Generator_UserColumnName="testerName" type="xs:string" minOccurs="0" />
+              <xs:element name="judgingResult" msprop:Generator_ColumnVarNameInTable="columnjudgingResult" msprop:Generator_ColumnPropNameInRow="judgingResult" msprop:Generator_ColumnPropNameInTable="judgingResultColumn" msprop:Generator_UserColumnName="judgingResult" type="xs:string" minOccurs="0" />
+              <xs:element name="judgingDate" msprop:Generator_ColumnVarNameInTable="columnjudgingDate" msprop:Generator_ColumnPropNameInRow="judgingDate" msprop:Generator_ColumnPropNameInTable="judgingDateColumn" msprop:Generator_UserColumnName="judgingDate" type="xs:string" minOccurs="0" />
+              <xs:element name="judgerName" msprop:Generator_ColumnVarNameInTable="columnjudgerName" msprop:Generator_ColumnPropNameInRow="judgerName" msprop:Generator_ColumnPropNameInTable="judgerNameColumn" msprop:Generator_UserColumnName="judgerName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ComponentDrugTestContentDataSet" msprop:Generator_TableClassName="ComponentDrugTestContentDataSetDataTable" msprop:Generator_TableVarName="tableComponentDrugTestContentDataSet" msprop:Generator_RowChangedName="ComponentDrugTestContentDataSetRowChanged" msprop:Generator_TablePropName="ComponentDrugTestContentDataSet" msprop:Generator_RowDeletingName="ComponentDrugTestContentDataSetRowDeleting" msprop:Generator_RowChangingName="ComponentDrugTestContentDataSetRowChanging" msprop:Generator_RowEvHandlerName="ComponentDrugTestContentDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="ComponentDrugTestContentDataSetRowDeleted" msprop:Generator_RowClassName="ComponentDrugTestContentDataSetRow" msprop:Generator_UserTableName="ComponentDrugTestContentDataSet" msprop:Generator_RowEvArgName="ComponentDrugTestContentDataSetRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="testItemName" msprop:Generator_ColumnVarNameInTable="columntestItemName" msprop:Generator_ColumnPropNameInRow="testItemName" msprop:Generator_ColumnPropNameInTable="testItemNameColumn" msprop:Generator_UserColumnName="testItemName" type="xs:string" minOccurs="0" />
+              <xs:element name="testMethod" msprop:Generator_ColumnVarNameInTable="columntestMethod" msprop:Generator_ColumnPropNameInRow="testMethod" msprop:Generator_ColumnPropNameInTable="testMethodColumn" msprop:Generator_UserColumnName="testMethod" type="xs:string" minOccurs="0" />
+              <xs:element name="testCriterion" msprop:Generator_ColumnVarNameInTable="columntestCriterion" msprop:Generator_ColumnPropNameInRow="testCriterion" msprop:Generator_ColumnPropNameInTable="testCriterionColumn" msprop:Generator_UserColumnName="testCriterion" type="xs:string" minOccurs="0" />
+              <xs:element name="testScore" msprop:Generator_ColumnVarNameInTable="columntestScore" msprop:Generator_ColumnPropNameInRow="testScore" msprop:Generator_ColumnPropNameInTable="testScoreColumn" msprop:Generator_UserColumnName="testScore" type="xs:string" minOccurs="0" />
+              <xs:element name="compatibilityOx" msprop:Generator_ColumnVarNameInTable="columncompatibilityOx" msprop:Generator_ColumnPropNameInRow="compatibilityOx" msprop:Generator_ColumnPropNameInTable="compatibilityOxColumn" msprop:Generator_UserColumnName="compatibilityOx" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

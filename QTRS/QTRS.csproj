@@ -1,0 +1,740 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\build\OpenCvSharp3-AnyCPU.props" Condition="Exists('..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\build\OpenCvSharp3-AnyCPU.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{22B5E344-2E2A-4BF8-848B-DE207C11F3F9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QTRS</RootNamespace>
+    <AssemblyName>QTRS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Bokehlicia-Captiva-Atom.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Remote|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Remote\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="C1.C1Zip.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=79882d576c6336da" />
+    <Reference Include="C1.DataCollection, Version=1.0.20201.25, Culture=neutral, PublicKeyToken=79882d576c6336da" />
+    <Reference Include="C1.DataCollection.BindingList, Version=1.0.20201.25, Culture=neutral, PublicKeyToken=79882d576c6336da" />
+    <Reference Include="C1.Win.4, Version=4.0.20211.492, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
+    <Reference Include="C1.Win.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
+    <Reference Include="C1.Win.BarCode.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=79882d576c6336da" />
+    <Reference Include="C1.Win.Bitmap.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
+    <Reference Include="C1.Win.C1Chart.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=a22e16972c085838" />
+    <Reference Include="C1.Win.C1Chart3D.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=a22e16972c085838" />
+    <Reference Include="C1.Win.C1Command.4, Version=4.0.20211.492, Culture=neutral, PublicKeyToken=e808566f358766d8" />
+    <Reference Include="C1.Win.C1Document.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
+    <Reference Include="C1.Win.C1DX.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
+    <Reference Include="C1.Win.C1Input.4, Version=4.0.20211.492, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Input.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a" />
+    <Reference Include="C1.Win.C1InputPanel.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=79882d576c6336da" />
+    <Reference Include="C1.Win.Calendar.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=79882d576c6336da" />
+    <Reference Include="C1.Win.DataFilter.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.FlexChart.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=3aa2920c09e0aefd" />
+    <Reference Include="C1.Win.FlexReport.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.FlexViewer.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.ImportServices.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
+    <Reference Include="C1.Win.Ribbon.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=79882d576c6336da" />
+    <Reference Include="C1.Win.TreeView.4.5.2, Version=4.5.20211.492, Culture=neutral, PublicKeyToken=79882d576c6336da" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\lib\net40\OpenCvSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OpenCvSharp.Blob, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\lib\net40\OpenCvSharp.Blob.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OpenCvSharp.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\lib\net40\OpenCvSharp.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OpenCvSharp.UserInterface, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\lib\net40\OpenCvSharp.UserInterface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ComboBoxItem.cs" />
+    <Compile Include="Common\Configs.cs" />
+    <Compile Include="Common\HelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\HelpForm.Designer.cs">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\KeyValue.cs" />
+    <Compile Include="Common\TestMethodInfo.cs" />
+    <Compile Include="ComponentTest\CompatibilityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComponentTest\CompatibilityForm.Designer.cs">
+      <DependentUpon>CompatibilityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\DigitTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControl\DigitTextBox.Designer.cs">
+      <DependentUpon>DigitTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\RealNumberTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControl\RealNumberTextBox.Designer.cs">
+      <DependentUpon>RealNumberTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\ExcelExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportExport\ExcelExportForm.Designer.cs">
+      <DependentUpon>ExcelExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\ExcelImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportExport\ExcelImportForm.Designer.cs">
+      <DependentUpon>ExcelImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportInspection\AddImportInspectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportInspection\AddImportInspectionForm.Designer.cs">
+      <DependentUpon>AddImportInspectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportInspection\ImportInspectionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ImportInspection\ImportInspectionControl.Designer.cs">
+      <DependentUpon>ImportInspectionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Notice\AddNoticeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notice\AddNoticeForm.Designer.cs">
+      <DependentUpon>AddNoticeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportExport\OleDbHelper.cs" />
+    <Compile Include="PackingTest\AddProductTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PackingTest\AddProductTestForm.Designer.cs">
+      <DependentUpon>AddProductTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PackingTest\PackingTestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PackingTest\PackingTestControl.Designer.cs">
+      <DependentUpon>PackingTestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PackingTest\RunQualityTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PackingTest\RunQualityTestForm.Designer.cs">
+      <DependentUpon>RunQualityTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductTest\AbsorbedAmountTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductTest\AbsorbedAmountTestForm.Designer.cs">
+      <DependentUpon>AbsorbedAmountTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductTest\CompatibilityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductTest\CompatibilityForm.Designer.cs">
+      <DependentUpon>CompatibilityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductTest\DateTimePickerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductTest\DateTimePickerForm.Designer.cs">
+      <DependentUpon>DateTimePickerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductTest\LotModifyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductTest\LotModifyForm.Designer.cs">
+      <DependentUpon>LotModifyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductTest\SerialPortSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductTest\SerialPortSetup.Designer.cs">
+      <DependentUpon>SerialPortSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ComponentDrugTestDataSource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComponentDrugTestDataSource.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\FinalProductQtTestDataSource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinalProductQtTestDataSource.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\PasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\PasswordForm.Designer.cs">
+      <DependentUpon>PasswordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ProductMfTestDataSource.cs">
+      <DependentUpon>ProductMfTestDataSource.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ProductMfTestDataSource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductMfTestDataSource.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ProductQtTestDataSource.cs">
+      <DependentUpon>ProductQtTestDataSource.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ProductQtTestDataSource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductQtTestDataSource.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\QuickReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\QuickReportForm.Designer.cs">
+      <DependentUpon>QuickReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ReportControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Report\ReportControl.Designer.cs">
+      <DependentUpon>ReportControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\ReportForm.Designer.cs">
+      <DependentUpon>ReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\AddComponentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting\AddComponentForm.Designer.cs">
+      <DependentUpon>AddComponentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\AddMemberForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting\AddMemberForm.Designer.cs">
+      <DependentUpon>AddMemberForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductTest\AddProductTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductTest\AddProductTestForm.Designer.cs">
+      <DependentUpon>AddProductTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComponentTest\AddComponentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComponentTest\AddComponentForm.Designer.cs">
+      <DependentUpon>AddComponentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_NotUse\AddRegulationTestCpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_NotUse\AddRegulationTestCpForm.Designer.cs">
+      <DependentUpon>AddRegulationTestCpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_NotUse\AddImportInspectionRmdForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_NotUse\AddImportInspectionRmdForm.Designer.cs">
+      <DependentUpon>AddImportInspectionRmdForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Analysis\AnalysisControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Analysis\AnalysisControl.Designer.cs">
+      <DependentUpon>AnalysisControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_NotUse\AddRegulationTestRmdForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_NotUse\AddRegulationTestRmdForm.Designer.cs">
+      <DependentUpon>AddRegulationTestRmdForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_NotUse\DataManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="_NotUse\DataManagementControl.Designer.cs">
+      <DependentUpon>DataManagementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\DbHelper.cs" />
+    <Compile Include="Common\Global.cs" />
+    <Compile Include="_NotUse\ImportInspectionRmdControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="_NotUse\ImportInspectionRmdControl.Designer.cs">
+      <DependentUpon>ImportInspectionRmdControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\LoginInfo.cs" />
+    <Compile Include="MainControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainControl.Designer.cs">
+      <DependentUpon>MainControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\CaptureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\CaptureForm.Designer.cs">
+      <DependentUpon>CaptureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComponentTest\ComponentTestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComponentTest\ComponentTestControl.Designer.cs">
+      <DependentUpon>ComponentTestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Notice\NoticeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Notice\NoticeControl.Designer.cs">
+      <DependentUpon>NoticeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductTest\ProductTestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductTest\ProductTestControl.Designer.cs">
+      <DependentUpon>ProductTestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductTest\RunQualityTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductTest\RunQualityTestForm.Designer.cs">
+      <DependentUpon>RunQualityTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_NotUse\RegulationTestCpControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="_NotUse\RegulationTestCpControl.Designer.cs">
+      <DependentUpon>RegulationTestCpControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_NotUse\RegulationTestRmdControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="_NotUse\RegulationTestRmdControl.Designer.cs">
+      <DependentUpon>RegulationTestRmdControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComponentTest\RunComponentTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComponentTest\RunComponentTestForm.Designer.cs">
+      <DependentUpon>RunComponentTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_NotUse\RunManufactureTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_NotUse\RunManufactureTestForm.Designer.cs">
+      <DependentUpon>RunManufactureTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\AddProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting\AddProductForm.Designer.cs">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\ProductMasterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Setting\ProductMasterControl.Designer.cs">
+      <DependentUpon>ProductMasterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\ComponentMasterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Setting\ComponentMasterControl.Designer.cs">
+      <DependentUpon>ComponentMasterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\MemberControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Setting\MemberControl.Designer.cs">
+      <DependentUpon>MemberControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\SettingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Setting\SettingControl.Designer.cs">
+      <DependentUpon>SettingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Utils.cs" />
+    <EmbeddedResource Include="Common\HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComponentTest\CompatibilityForm.resx">
+      <DependentUpon>CompatibilityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportExport\ExcelExportForm.resx">
+      <DependentUpon>ExcelExportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportExport\ExcelImportForm.resx">
+      <DependentUpon>ExcelImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportInspection\AddImportInspectionForm.resx">
+      <DependentUpon>AddImportInspectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportInspection\ImportInspectionControl.resx">
+      <DependentUpon>ImportInspectionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notice\AddNoticeForm.resx">
+      <DependentUpon>AddNoticeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackingTest\AddProductTestForm.resx">
+      <DependentUpon>AddProductTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackingTest\PackingTestControl.resx">
+      <DependentUpon>PackingTestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PackingTest\RunQualityTestForm.resx">
+      <DependentUpon>RunQualityTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductTest\AbsorbedAmountTestForm.resx">
+      <DependentUpon>AbsorbedAmountTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductTest\CompatibilityForm.resx">
+      <DependentUpon>CompatibilityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductTest\DateTimePickerForm.resx">
+      <DependentUpon>DateTimePickerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductTest\LotModifyForm.resx">
+      <DependentUpon>LotModifyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductTest\SerialPortSetup.resx">
+      <DependentUpon>SerialPortSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Report\ComponentDrugTestResultReport.rdlc" />
+    <EmbeddedResource Include="Report\PasswordForm.resx">
+      <DependentUpon>PasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ProductMfTestResultReport.rdlc" />
+    <EmbeddedResource Include="Report\FinalProductQtTestResultReport.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ProductQtTestResultReport.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\QuickReportForm.resx">
+      <DependentUpon>QuickReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportControl.resx">
+      <DependentUpon>ReportControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\ReportForm.resx">
+      <DependentUpon>ReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\AddComponentForm.resx">
+      <DependentUpon>AddComponentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\AddMemberForm.resx">
+      <DependentUpon>AddMemberForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_NotUse\AddImportInspectionRmdForm.resx">
+      <DependentUpon>AddImportInspectionRmdForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Analysis\AnalysisControl.resx">
+      <DependentUpon>AnalysisControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_NotUse\AddRegulationTestCpForm.resx">
+      <DependentUpon>AddRegulationTestCpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_NotUse\AddRegulationTestRmdForm.resx">
+      <DependentUpon>AddRegulationTestRmdForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_NotUse\DataManagementControl.resx">
+      <DependentUpon>DataManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_NotUse\ImportInspectionRmdControl.resx">
+      <DependentUpon>ImportInspectionRmdControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainControl.resx">
+      <DependentUpon>MainControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComponentTest\AddComponentForm.resx">
+      <DependentUpon>AddComponentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\CaptureForm.resx">
+      <DependentUpon>CaptureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComponentTest\ComponentTestControl.resx">
+      <DependentUpon>ComponentTestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notice\NoticeControl.resx">
+      <DependentUpon>NoticeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductTest\AddProductTestForm.resx">
+      <DependentUpon>AddProductTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductTest\ProductTestControl.resx">
+      <DependentUpon>ProductTestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_NotUse\RunManufactureTestForm.resx">
+      <DependentUpon>RunManufactureTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductTest\RunQualityTestForm.resx">
+      <DependentUpon>RunQualityTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="_NotUse\RegulationTestCpControl.resx">
+      <DependentUpon>RegulationTestCpControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_NotUse\RegulationTestRmdControl.resx">
+      <DependentUpon>RegulationTestRmdControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComponentTest\RunComponentTestForm.resx">
+      <DependentUpon>RunComponentTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\AddProductForm.resx">
+      <DependentUpon>AddProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\ProductMasterControl.resx">
+      <DependentUpon>ProductMasterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\ComponentMasterControl.resx">
+      <DependentUpon>ComponentMasterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\MemberControl.resx">
+      <DependentUpon>MemberControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\SettingControl.resx">
+      <DependentUpon>SettingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Config\Config.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Report\ComponentDrugTestDataSource.xsc">
+      <DependentUpon>ComponentDrugTestDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="Report\ComponentDrugTestDataSource.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ComponentDrugTestDataSource.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\ComponentDrugTestDataSource.xss">
+      <DependentUpon>ComponentDrugTestDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="Report\FinalProductQtTestDataSource.xsc">
+      <DependentUpon>FinalProductQtTestDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="Report\FinalProductQtTestDataSource.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FinalProductQtTestDataSource.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\FinalProductQtTestDataSource.xss">
+      <DependentUpon>FinalProductQtTestDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="Report\ProductMfTestDataSource.xsc">
+      <DependentUpon>ProductMfTestDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="Report\ProductMfTestDataSource.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductMfTestDataSource.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Report\ProductMfTestDataSource.xss">
+      <DependentUpon>ProductMfTestDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="Report\ProductMfTestResultReportRow15.flxr">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Report\ProductMfTestResultReportRow20.flxr">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Report\ProductMfTestResultReportRow22.flxr">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Report\ProductQtTestDataSource.xsc">
+      <DependentUpon>ProductQtTestDataSource.xsd</DependentUpon>
+    </None>
+    <None Include="Report\ProductQtTestDataSource.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductQtTestDataSource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Report\ProductQtTestDataSource.xss">
+      <DependentUpon>ProductQtTestDataSource.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.ReportViewer.12.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Report Viewer 2014 Runtime</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Bokehlicia-Captiva-Atom.ico" />
+    <None Include="Report\ProductQtTestResultReport.flxr">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\build\OpenCvSharp3-AnyCPU.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCvSharp3-AnyCPU.4.0.0.20181129\build\OpenCvSharp3-AnyCPU.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
